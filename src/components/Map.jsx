@@ -7,6 +7,8 @@ import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet'
 import { Icon, divIcon } from 'leaflet';
 import MarkerClusterGroup from 'react-leaflet-cluster';
 
+import { Link } from "react-router-dom";
+
 
 import { supabase } from '../createClient';
 
@@ -49,8 +51,8 @@ function Map() {
   }
 
   return (
-
-    <MapContainer className = {styles.map} center = {[-23.64420573766554, -46.52851296697583]} zoom={19} minZoom={17}>
+    <div>
+      <MapContainer className = {styles.map} center = {[-23.64420573766554, -46.52851296697583]} zoom={19} minZoom={17}>
 
       <TileLayer
       attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -72,8 +74,14 @@ function Map() {
         }
       </MarkerClusterGroup>
     </MapContainer>
+
+    <Link to="/comunidade">
+        <button style={{color:'black'}}>GoGOGO</button>
+    </Link>
+    
+    </div>
+    
   )
 }
-
 
 export default Map

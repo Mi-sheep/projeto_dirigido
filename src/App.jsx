@@ -1,10 +1,12 @@
-import { useState } from 'react'
-import Map from './components/Map.jsx'
+import { BrowserRouter } from 'react-router-dom'
+import Router from './router'
 
 function App() {
 
   return (
-    <Map />
+    <BrowserRouter>
+      <Router />
+    </BrowserRouter>
   )
 }
 
