@@ -14,8 +14,10 @@ import { supabase } from '../createClient';
 
 function Map() {
 
-  const [Local, setLocals] = useState([])
-  console.log(Local)
+  const [locals, setLocals] = useState([])
+  console.log(locals)
+
+  const [alerta, setAlerta] = useState(false)
 
   
   useEffect(() => {
@@ -23,21 +25,21 @@ function Map() {
   }, [])
 
   async function fetchLocals(){
-    const {data} = await supabase.from('Local').select('*')
+    const {data} = await supabase.from('local').select('*')
     setLocals(data)
 
   }
 
-  const markers = [
-  {
-    geocode: [-23.645925645072236, -46.52744301775867],
-    Popup: <h1 style={{color:"red"}}>Mim roubaram :(</h1>
-  },
-  {
-    geocode: [-23.643176517570094, -46.528761168383795],
-    Popup: <h1 style={{color:"blue"}}>Ufa, assaltei alguém :D</h1>
-  }
-  ];
+  // const markers = [
+  // {
+  //   geocode: [-23.645925645072236, -46.52744301775867],
+  //   Popup: <h1 style={{color:"red"}}>Mim roubaram :(</h1>
+  // },
+  // {
+  //   geocode: [-23.643176517570094, -46.528761168383795],
+  //   Popup: <h1 style={{color:"blue"}}>Ufa, assaltei alguém :D</h1>
+  // }
+  // ];
 
   const customIcon = new Icon({
     iconUrl: "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/129.png",
@@ -50,8 +52,11 @@ function Map() {
     })
   }
 
+
   return (
-    <div>
+  <main>
+      
+    <div className='mapa'>
       <MapContainer className = {styles.map} center = {[-23.64420573766554, -46.52851296697583]} zoom={19} minZoom={17}>
 
       <TileLayer
@@ -64,10 +69,10 @@ function Map() {
         iconCreateFunction={customCluster}
       >
 
-        {markers.map(marker => (
-            <Marker position={marker.geocode} icon ={customIcon}>
+        {locals.map((local) => (
+            <Marker icon ={customIcon} position={[local.local_x, local.local_y]}>
             <Popup> 
-              {marker.Popup}
+              <h2>Cosorro</h2>
             </Popup>
             </Marker>
         ))
@@ -75,11 +80,21 @@ function Map() {
       </MarkerClusterGroup>
     </MapContainer>
 
-    <Link to="/comunidade">
-        <button style={{color:'black'}}>GoGOGO</button>
-    </Link>
-    
     </div>
+    
+    <div>
+      <Link to={"/comunidade"}>
+      <button>Estatísticas</button>
+      </Link>
+
+      <button onClick={() => setAlerta(!alerta)}>{alerta ? "Alerta!!" : "Alerta?"}</button>
+
+      <Link to={"/murals"}>
+      <button>Mural</button>
+      </Link>
+    </div>
+      
+  </main>
     
   )
 }

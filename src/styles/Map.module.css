@@ -6,8 +6,11 @@
   box-sizing: border-box;
 }
 
+
 .map {
   height: 90vh;
+  width: 150vh;
+  margin: 0 auto;
 }
 
 .cluster-icon {
