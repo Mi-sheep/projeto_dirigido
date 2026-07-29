@@ -3,54 +3,68 @@ import 'leaflet/dist/leaflet.css';
 
 import styles from "../styles/Map.module.css";
 
-import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet'
+import { MapContainer, Marker, Popup, TileLayer, useMapEvents } from 'react-leaflet'
 import { Icon, divIcon } from 'leaflet';
 import MarkerClusterGroup from 'react-leaflet-cluster';
 
-import { Link } from "react-router-dom";
-
+import { Link, Navigate, useNavigate } from "react-router-dom";
 
 import { supabase } from '../createClient';
 
 function Map() {
 
-  const [locals, setLocals] = useState([])
-  console.log(locals)
+//implementação do supabase
 
-  const [alerta, setAlerta] = useState(false)
+  const [ocorrencia, setOcorrencia] = useState([])
+  console.log(ocorrencia)
 
-  
   useEffect(() => {
-    fetchLocals()
+    fetchOcorrencia()
   }, [])
 
-  async function fetchLocals(){
-    const {data} = await supabase.from('local').select('*')
-    setLocals(data)
+  async function fetchOcorrencia(){
+    const {data} = await supabase.from('ocorrencias').select('*')
+    setOcorrencia(data)
 
   }
 
-  // const markers = [
-  // {
-  //   geocode: [-23.645925645072236, -46.52744301775867],
-  //   Popup: <h1 style={{color:"red"}}>Mim roubaram :(</h1>
-  // },
-  // {
-  //   geocode: [-23.643176517570094, -46.528761168383795],
-  //   Popup: <h1 style={{color:"blue"}}>Ufa, assaltei alguém :D</h1>
-  // }
-  // ];
+//ajustes do mapa
 
   const customIcon = new Icon({
     iconUrl: "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/129.png",
     iconSize: [60, 60]
-  });
+  })
+
   const customCluster = (cluster) => {
     return new divIcon({
       html: `<div class = "cluster-icon">${cluster.getChildCount()}</div>`,
       className: "custom-marker-cluster"
     })
   }
+
+  //ajuste do alerta
+  const navigate = useNavigate()
+  const [alerta, setAlerta] = useState(false)
+
+
+  function OAlerta(){
+
+    useMapEvents({
+    click(p) {
+
+      if(!alerta) return;
+
+      navigate("/alerta", {
+        state:{
+          lati: p.latlng.lat,
+          long: p.latlng.lng,
+        }
+      })
+    }
+  });
+    return null;
+  }
+  
 
 
   return (
@@ -64,15 +78,17 @@ function Map() {
       url='https://tile.openstreetmap.org/{z}/{x}/{y}.png'
       />
 
+      <OAlerta />
+
       <MarkerClusterGroup
         chunkedLoading
         iconCreateFunction={customCluster}
       >
 
-        {locals.map((local) => (
-            <Marker icon ={customIcon} position={[local.local_x, local.local_y]}>
+        {ocorrencia.map((ocorrencia) => (
+            <Marker key={ocorrencia.id} icon ={customIcon} position={[ocorrencia.local_x, ocorrencia.local_y]}>
             <Popup> 
-              <h2>Cosorro</h2>
+              <h2>{ocorrencia.data_ocorrido}</h2>
             </Popup>
             </Marker>
         ))
@@ -81,7 +97,9 @@ function Map() {
     </MapContainer>
 
     </div>
-    
+
+  {/* botões de baixo */}
+
     <div>
       <Link to={"/comunidade"}>
       <button>Estatísticas</button>
