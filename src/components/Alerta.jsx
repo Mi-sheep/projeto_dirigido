@@ -1,21 +1,56 @@
 import React from 'react'
 import { useState } from 'react';
-import { useLocation } from 'react-router-dom'
+import { useLocation, Navigate, useNavigate } from 'react-router-dom'
+import { supabase } from '../createClient';
+
 
 function Alerta() {
 
-    const location = useLocation();
-    console.log(location)
+  const navigate = useNavigate()
 
-    const [opcaoR, setOpcaoR] = useState('');
+  const { state } = useLocation();
+  console.log(state)
+
+  const [opcaoR, setOpcaoR] = useState('');
+
+  const [dados, setDados] = useState({
+    data_ocorrido: null, periodo: null, regiao: null, descricao: null, local_y: state?.long ?? null, local_x: state?.lati ?? null
+  })
+  console.log(dados)
+
+  function handleMudanca (e) {
+
+    setDados(preFormData => {
+      return{
+        ...preFormData,
+        [e.target.name]:e.target.value
+      }
+    })
+  }
+  
+
+  async function registrarDados(e){
+    e.preventDefault();
+    
+    const {error} = await supabase
+    .from('ocorrencias')
+    .insert({data_ocorrido: dados.data_ocorrido, periodo_ocorrido: dados.periodo, regiao_ocorrido: dados.regiao, local_x: dados.local_x, local_y: dados.local_y, descricao: dados.descricao})
+
+    if(!error){
+      navigate("/")
+    } 
+    else{
+      console.error(error)
+    }
+  }
 
   return (
-    <form action="">
+    <form onSubmit={registrarDados}>
         <div>
 
-        <label htmlFor="data_ocorrido">Data do ocorrido</label>
+        <label htmlFor="data_do_ocorrido">Data do ocorrido</label>
         <br />
-        <input id="data_ocorrido" type="date" />
+        <input id="data_do_ocorrido" type="date" name='data_ocorrido' onChange={handleMudanca}/>
 
         </div>
 
@@ -25,12 +60,12 @@ function Alerta() {
 
         <p>Período ocorrido</p>
         <br />
-        <select name="" id="periodos">
-            <option value="selecione" disabled selected>Selecione o período</option>
-            <option value="manha">Manhã</option>
-            <option value="tarde">Tarde</option>
-            <option value="noite">Noite</option>
-            <option value="madrugada">Madrugada</option>
+        <select name="periodo" id="periodos" onChange={handleMudanca}>
+            <option value="" disabled selected>Selecione o período</option>
+            <option value="Manhã">Manhã</option>
+            <option value="Tarde">Tarde</option>
+            <option value="Noite">Noite</option>
+            <option value="Madrugada">Madrugada</option>
         </select>
 
         </div>
@@ -40,19 +75,19 @@ function Alerta() {
         <div>
           <p>Região do assalto</p>
           <br />
-          <select value={opcaoR} onChange={(o) => setOpcaoR(o.target.value)} name="" id="regioes">
-            <option value="selecione" disabled selected>Selecione a região geral</option>
-            <option value="portaria1">Portaria 1 (Avenida dos Estados)</option>
-            <option value="portaria6">Portaria 6 / Rua Abolição (Entrada dos fundos / Bloco B)</option>
-            <option value="torre">Torre do Relógio / Parada do Fretado Intercampi</option>
-            <option value="caminhoc">Caminho a pé até a Estação Celso Daniel (Avenidas Industrial/Estados)</option>
-            <option value="caminhop">Caminho a pé até a Estação Prefeito Saladino (Rua Santa Adélia/Viaduto)</option>
-            <option value="trolebus">Ponto de Trólebus (Parada Itamaraty)</option>
-            <option value="dentro">Dentro das dependências do campus (Bloco A, Bloco B, R.U., Estacionamento)</option>
+          <select value={opcaoR} onChange={(o) => {setOpcaoR(o.target.value); handleMudanca(o)}} name="regiao" id="regioes">
+            <option value="" disabled>Selecione a região geral</option>
+            <option value="Portaria 1 (Avenida dos Estados)">Portaria 1 (Avenida dos Estados)</option>
+            <option value="Portaria 6 / Rua Abolição (Entrada dos fundos / Bloco B)">Portaria 6 / Rua Abolição (Entrada dos fundos / Bloco B)</option>
+            <option value="Torre do Relógio / Parada do Fretado Intercampi">Torre do Relógio / Parada do Fretado Intercampi</option>
+            <option value="Caminho a pé até a Estação Celso Daniel (Avenidas Industrial/Estados)">Caminho a pé até a Estação Celso Daniel (Avenidas Industrial/Estados)</option>
+            <option value="Caminho a pé até a Estação Prefeito Saladino (Rua Santa Adélia/Viaduto)">Caminho a pé até a Estação Prefeito Saladino (Rua Santa Adélia/Viaduto)</option>
+            <option value="Ponto de Trólebus (Parada Itamaraty)">Ponto de Trólebus (Parada Itamaraty)</option>
+            <option value="Dentro das dependências do campus (Bloco A, Bloco B, R.U., Estacionamento)">Dentro das dependências do campus (Bloco A, Bloco B, R.U., Estacionamento)</option>
             <option value="outra">Outra</option>
           </select>
           {opcaoR === 'outra' && (
-            <input id="outros" type="text" placeholder="Escreva a região aqui" />
+            <input name='regiao' id="outros" type="text" placeholder="Escreva a região aqui"  onChange={handleMudanca}/>
           )}
         </div>
 
@@ -61,7 +96,7 @@ function Alerta() {
         <div>
           <label htmlFor="desc">Faça uma descrição do assalto</label>
           <br />
-          <input type="text" id="desc" placeholder='Houve armas? Estava só ou em grupo? Sofreu alguma violência? Compartilhe o que achar relevante'/>
+          <input name='descricao' type="text" id="desc" placeholder='Houve armas? Estava só ou em grupo? Sofreu alguma violência? Compartilhe o que achar relevante' onChange={handleMudanca}/>
         </div>
 
         <hr />
@@ -70,7 +105,7 @@ function Alerta() {
 
         <hr />
 
-        <button>Enviar</button>
+        <button type='submit'>Enviar</button>
 
         
     </form>
