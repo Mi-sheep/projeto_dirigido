@@ -1,5 +1,4 @@
 import React from 'react'
-import styles from "../styles/Prevencao.module.css";
 import { Link } from 'react-router-dom';
 
 function Prevencao() {
@@ -11,14 +10,17 @@ function Prevencao() {
         <button>Volta</button>
         </Link>
         <h1>Guia de Prevenção</h1>
-        <h4>Uma das maiores preocupações dos estudantes da UFABC em relação à segurança pública é a recorrência de roubos no entorno da universidade. Em 2025, as estatísticas oficiais apontaram o registro de XX roubos na cidade, sendo grande parte desses crimes cometida contra pedestres. Diante dessa realidade, este panfleto reúne orientações e dicas de prevenção para ajudar a comunidade acadêmica a reduzir riscos e adotar medidas de segurança no dia a dia.</h4>
       </header>
 
       <header className='desktop'>
         <h1>Guia de Prevenção</h1>
-        <h4>Uma das maiores preocupações dos estudantes da UFABC em relação à segurança pública é a recorrência de roubos no entorno da universidade. Em 2025, as estatísticas oficiais apontaram o registro de XX roubos na cidade, sendo grande parte desses crimes cometida contra pedestres. Diante dessa realidade, este panfleto reúne orientações e dicas de prevenção para ajudar a comunidade acadêmica a reduzir riscos e adotar medidas de segurança no dia a dia.</h4>
       </header>
 
+      <section className='introducao'>
+      <h4>Uma das maiores preocupações dos estudantes da UFABC em relação à segurança pública é a recorrência de roubos no entorno da universidade. Em 2025, as estatísticas oficiais apontaram o registro de XX roubos na cidade, sendo grande parte desses crimes cometida contra pedestres. Diante dessa realidade, este panfleto reúne orientações e dicas de prevenção para ajudar a comunidade acadêmica a reduzir riscos e adotar medidas de segurança no dia a dia.</h4>
+      </section>
+
+      <section className='dicas'>
       <h2>7 Dicas para prevenção a assaltos</h2>
 
       <ol>
@@ -74,6 +76,8 @@ function Prevencao() {
 
 
       </ol>
+
+      </section>
 
     </main>
   )

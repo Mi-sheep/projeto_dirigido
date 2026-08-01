@@ -55,6 +55,11 @@ body {
   background-color: #99b584;
 }
 
+ol {
+  padding-left: 10rem;
+}
+
+
 /* #root {
   width: 1126px;
   max-width: 100%;
