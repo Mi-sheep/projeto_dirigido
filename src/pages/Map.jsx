@@ -69,6 +69,16 @@ function Map() {
 
   return (
   <main>
+    <header>
+      <img src="https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/129.png" style={{ width: "80px", height: "auto" }} alt="placeholder" />
+      
+      <h1>UFAssalto</h1>
+
+      <Link to={"/configuracoes"}>
+      <button>Configurações</button>
+      </Link>
+
+    </header>
       
     <div className='mapa'>
       <MapContainer className = {styles.map} center = {[-23.64420573766554, -46.52851296697583]} zoom={19} minZoom={17}>
@@ -105,7 +115,7 @@ function Map() {
       <button>Estatísticas</button>
       </Link>
 
-      <button onClick={() => setAlerta(!alerta)}>{alerta ? "Alerta!!" : "Alerta?"}</button>
+      <button onClick={() => {setAlerta(!alerta); alerta ? alert("Selecione o botão novamente para ativar o modo de alerta") : alert("Selecione o local do assalto")}}>{alerta ? "Alerta!!" : "Alerta?"}</button>
 
       <Link to={"/murals"}>
       <button>Mural</button>

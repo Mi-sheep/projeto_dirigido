@@ -1,11 +1,11 @@
 import { Routes, Route } from "react-router-dom"
 
-import Map from "./components/Map"
-import Comunidade from "./components/Comunidade"
-import Configuracoes from "./components/Configuracoes"
-import MuralS from "./components/MuralS"
-import MuralP1 from "./components/MuralP1"
-import Alerta from "./components/Alerta"
+import Map from "./pages/Map"
+import Comunidade from "./pages/Comunidade"
+import Configuracoes from "./pages/Configuracoes"
+import MuralS from "./pages/MuralS"
+import Prevencao from "./pages/Prevencao"
+import Alerta from "./pages/Alerta"
 
 function Router(){
     return(
@@ -14,8 +14,8 @@ function Router(){
             <Route path="/alerta" element={<Alerta/>}/>
             <Route path="/comunidade" element={<Comunidade/>}/>
             <Route path="/configuracoes" element={<Configuracoes/>}/>
-            <Route path="/murals" element={<Configuracoes/>}/>
-            <Route path="/muralp1" element={<Configuracoes/>}/>            
+            <Route path="/murals" element={<MuralS/>}/>
+            <Route path="/prevencao" element={<Prevencao/>}/>            
         </Routes>
     )
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react';
-import { useLocation, Navigate, useNavigate } from 'react-router-dom'
+import { useLocation, Navigate, useNavigate, Link } from 'react-router-dom'
 import { supabase } from '../createClient';
 
 
@@ -45,6 +45,24 @@ function Alerta() {
   }
 
   return (
+    <main>
+
+      <header className='mobile'>
+        <Link to={"/"}>
+
+        <button>Volta</button>
+
+        </Link>
+
+        <h1>Ocorrências</h1>
+      </header>
+
+      <header className='desktop'>
+
+        <h1>Ocorrências</h1>
+
+      </header>
+
     <form onSubmit={registrarDados}>
         <div>
 
@@ -101,7 +119,7 @@ function Alerta() {
 
         <hr />
 
-        <p>Texto sobre ocorrências</p>
+        <p>Registrou um Boletim de Ocorrência? Você sabia que esse registro pode ajudar muito além do seu próprio caso? O Boletim de Ocorrência contribui para que as autoridades identifiquem padrões, compreendam a necessidade de intervenção em determinados pontos e horários, além de auxiliar em investigações de situações semelhantes. Saiba mais acessando nosso mural de informações.</p>
 
         <hr />
 
@@ -109,6 +127,7 @@ function Alerta() {
 
         
     </form>
+    </main>
   )
 }
 
