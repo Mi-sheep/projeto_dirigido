@@ -6,6 +6,10 @@ import Configuracoes from "./pages/Configuracoes"
 import MuralS from "./pages/MuralS"
 import Prevencao from "./pages/Prevencao"
 import Alerta from "./pages/Alerta"
+import Contatos from "./pages/Contatos"
+import Delegacia from "./pages/Delegacia"
+import Consequencias from "./pages/Consequencias"
+import Combate from "./pages/Combate"
 
 function Router(){
     return(
@@ -15,8 +19,12 @@ function Router(){
             <Route path="/comunidade" element={<Comunidade/>}/>
             <Route path="/configuracoes" element={<Configuracoes/>}/>
             <Route path="/murals" element={<MuralS/>}/>
-            <Route path="/prevencao" element={<Prevencao/>}/>            
-        </Routes>
+            <Route path="/prevencao" element={<Prevencao/>}/>   
+            <Route path="/contatos-de-emergencia" element={<Contatos/>}/>
+            <Route path="/delegacia-eletronica" element={<Delegacia/>}/> 
+            <Route path="/como-os-assaltos-afetam-o-psicologico-das-vitimas" element={<Consequencias/>}/>        
+            <Route path="ufabc-em-combate-aos-assaltos" element={<Combate/>}/>
+        </Routes> 
     )
 }
 
