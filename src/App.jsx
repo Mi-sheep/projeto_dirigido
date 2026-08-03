@@ -7,6 +7,7 @@ const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
     background-color: ${theme.fundoTela};
+    font-family: 'Inclusive Sans', sans-serif;
   } 
 
   ol {
