@@ -5,5 +5,4 @@ export const theme = {
     botaoVoltar: "#2c4d2f",
     texto: "#000000",
     
-
 }

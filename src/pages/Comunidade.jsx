@@ -6,10 +6,8 @@ import { Link } from 'react-router-dom'
 import { supabase } from '../createClient'
 
 const Container = styled.div`
-  background-color: ${theme.fundoTela};
   min-height: 100dvh;
   padding: 1.25rem;
-  font-family: 'Inclusive Sans', sans-serif;
   box-sizing: border-box;
 
   header {

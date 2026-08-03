@@ -1,19 +1,38 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+import styled from 'styled-components'
+import { theme } from '../styles/theme'
+import iconVoltar from '../assets/return-icon.svg'
+
+const Container = styled.div`
+  min-height: 100vh;
+  padding: 20px;
+
+  .botao-voltar {
+    width: 50px;
+    height: 50px;
+    border: none;
+    border-radius: 8px;
+    background-color: ${theme.botaoVoltar};
+    cursor: pointer;
+
+    display:flex;
+    justify-content: center;
+    align-items: center;
+  }
+`;
 
 function Consequencias() {
   return (
-    <main>
+    <Container>
       
-      <header className='mobile'>
+      <header>
         <Link to={"/murals"}>
-        <button>Volta</button>
+          <button className="botao-voltar">
+            <img className='iconeVoltar' src={iconVoltar} alt="Voltar" />
+          </button>
         </Link>
         <h1>Como os assaltos afetam o psicológico das vítimas</h1>
-      </header>
-
-      <header className='desktop'>
-        <h1>Como os assaltos afetam o psicológicos das vítimas</h1>
       </header>
 
       <section className='introducao'>
@@ -56,7 +75,7 @@ function Consequencias() {
         <p>Após um assalto, buscar apoio psicológico pode ser um passo importante para que a vítima consiga lidar melhor com a situação e com as emoções causadas pelo trauma. O acompanhamento profissional auxilia na compreensão do que foi vivido, no controle de sentimentos como medo e ansiedade e na recuperação gradual da segurança e da qualidade de vida. Pedir ajuda é uma forma de cuidado consigo mesmo e contribui para a retomada das atividades do cotidiano.</p>
 
       </section>
-    </main>
+    </Container>
   )
 }
 

@@ -31,7 +31,7 @@ function Map() {
 //ajustes do mapa
 
   const customIcon = new Icon({
-    iconUrl: "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/129.png",
+    iconUrl: "https://api.iconify.design/mdi/map-marker.svg?color=%23ff0000",
     iconSize: [60, 60]
   })
 
@@ -70,7 +70,7 @@ function Map() {
   return (
   <main>
     <header>
-      <img src="https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/129.png" style={{ width: "80px", height: "auto" }} alt="placeholder" />
+      <img src="https://api.iconify.design/mdi/shield.svg?color=%234285F4" style={{ width: "80px", height: "auto" }} alt="placeholder" />
       
       <h1>UFAssalto</h1>
 

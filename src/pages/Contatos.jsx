@@ -1,20 +1,38 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+import styled from 'styled-components'
+import { theme } from '../styles/theme'
+import iconVoltar from '../assets/return-icon.svg'
+
+const Container = styled.div`
+  min-height: 100vh;
+  padding: 20px;
+
+  .botao-voltar {
+    width: 50px;
+    height: 50px;
+    border: none;
+    border-radius: 8px;
+    background-color: ${theme.botaoVoltar};
+    cursor: pointer;
+
+    display:flex;
+    justify-content: center;
+    align-items: center;
+  }
+`;
 
 function Contatos() {
   return (
-    <main>
+    <Container>
       
-      <header className='mobile'>
+      <header>
         <Link to={"/murals"}>
-        <button>Volta</button>
+          <button className="botao-voltar">
+            <img className='iconeVoltar' src={iconVoltar} alt="Voltar" />
+          </button>
         </Link>
         <h1>Contatos de Emergência</h1>
-      </header>
-
-      <header className='desktop'>
-        <h1>Contatos de Emergência</h1>
-      
       </header>
 
       <section className='introducao'>
@@ -80,7 +98,7 @@ function Contatos() {
 
       </ul>
 
-    </main>
+    </Container>
   )
 }
 
