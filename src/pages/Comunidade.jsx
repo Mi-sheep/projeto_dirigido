@@ -1,9 +1,14 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { theme } from '../styles/theme'
 import iconVoltar from '../assets/icon-voltar.png'
 import { Link } from 'react-router-dom'
 import { supabase } from '../createClient'
+
+import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend} from 'chart.js'
+import { Bar } from 'react-chartjs-2'
+
+ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 const Container = styled.div`
   min-height: 100dvh;
@@ -99,7 +104,7 @@ const Container = styled.div`
   .lista-ruas {
     margin: 0;
     padding-left: 1.25rem;
-    color: ${theme.fundoCards};
+    color: ${theme.texto};
     font-size: 0.95rem;
     display: flex;
     flex-direction: column;
@@ -146,6 +151,138 @@ const Container = styled.div`
 
 
 function Comunidade() {
+  const [ocorrencias, setOcorrencias] = useState([]);
+  const [dadosGrafico, setDadosGrafico] = useState({ labels: [], datasets: [] });
+  const [totalregistrado, setTotalRegistrado] = useState(0);
+  const [ruasMaisFrequentes, setRuasMaisFrequentes] = useState([]);
+
+
+  async function buscarDados() {
+    const { data, error } = await supabase
+    .from('ocorrencias')
+    .select('*')
+    .order('data_ocorrido', { ascending: false });
+
+    if (error) {
+      console.error('Erro ao buscar dados:', error);
+      return;
+    }
+
+    console.log('Dados carregados:', data);
+
+    atualizarEstados(data || []);
+  }
+
+
+  function atualizarEstados(dados) {
+    setOcorrencias(dados);
+    setTotalRegistrado(dados.length);
+    processarDadoGrafico(dados);
+    calcularRankingRuas(dados);
+  }
+
+  useEffect(() => {
+    buscarDados();
+
+    const canalOcorrencias = supabase
+      .channel('mudancas-ocorrencias')
+      .on(
+        'postgres_changes',
+        { event: '*', schema: 'public', table: 'ocorrencias' },
+        () => {
+          buscarDados();
+        }
+      )
+      .subscribe();
+    
+    return () => {
+      supabase.removeChannel(canalOcorrencias);
+    };
+  }, []);
+
+
+  function processarDadoGrafico(lista) {
+    const todosMeses = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez' ];
+    const mesAtual = new Date().getMonth();
+    let mesesDoQuadrimestre = [];
+    let indicesDosMeses = [];
+
+    if (mesAtual >= 0 && mesAtual <= 3) {
+      mesesDoQuadrimestre = todosMeses.slice(0, 4);
+      indicesDosMeses = Array.of(0, 1, 2, 3);
+    } else if (mesAtual >= 4 && mesAtual <= 7) {
+      mesesDoQuadrimestre = todosMeses.slice(4, 8);
+      indicesDosMeses = Array.of(4, 5, 6, 7);
+    } else {
+      mesesDoQuadrimestre = todosMeses.slice(8, 12);
+      indicesDosMeses = Array.of(8, 9, 10, 11);
+    }
+
+    const contagemQuadrimestre = Array(4).fill(0);
+
+    lista.forEach(item => {
+      if (item.data_ocorrido) {
+        const [ano, mes, dia] = item.data_ocorrido.split('-');
+        const mesIndex = parseInt(mes, 10) - 1;
+
+        const posicaoNoQuadrimestre = indicesDosMeses.indexOf(mesIndex);
+        if (posicaoNoQuadrimestre !== -1) {
+          contagemQuadrimestre[posicaoNoQuadrimestre] += 1;
+        }
+      }
+    });
+  
+  setDadosGrafico({
+    labels: mesesDoQuadrimestre,
+    datasets: [
+      {
+        label: 'Ocorrências',
+        data: contagemQuadrimestre,
+        backgroundColor: '#52b788',
+        borderRadius: 4,
+      },
+    ],
+  });
+}
+
+
+function calcularRankingRuas(lista) {
+  const contagemRuas = {};
+
+  lista.forEach(item => {
+    if (item.regiao_ocorrido) {
+      const nomeRua = item.regiao_ocorrido.trim();
+      contagemRuas[nomeRua] = (contagemRuas[nomeRua] || 0) + 1;
+    }
+  });
+
+  const rankingOrdenado = Object.keys(contagemRuas)
+    .map(rua => ({ nome: rua, quantidade: contagemRuas[rua] }))
+    .sort((a, b) => b.quantidade - a.quantidade)
+    .slice(0, 3);
+
+  setRuasMaisFrequentes(rankingOrdenado);
+}
+
+const opcoesGrafico = {
+  responsive: true,
+  maintainAspectRatio: false,
+  plugins: { legend: { display: false } },
+  barPercentage: 0.6,
+  scales: {
+    y: { beginAtZero: true, ticks: { stepSize: 1 } },
+    x: { grid: { display: false } }
+  }
+};
+
+
+function formatarDataExibicao(dataStr) {
+  if (!dataStr) return '';
+  const [ano, mes, dia] = dataStr.split('-');
+  return `${dia}/${mes}/${ano}`;
+}
+
+
   return (
     <Container>
       <header>
@@ -161,44 +298,54 @@ function Comunidade() {
 
         <div className="card-estatistica">
           <div className="topo-grafico"> Roubos Mensais</div>
-          <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', height: '6.25rem', padding: '0 0.5rem', marginTop: 'auto' }}>
-          <div style={{ width: '1.25rem', height: '2rem', backgroundColor: '#52b788', borderRadius: '0.125rem' }}></div>
-            <div style={{ width: '1.25rem', height: '4.5rem', backgroundColor: '#52b788', borderRadius: '0.125rem' }}></div>
-            <div style={{ width: '1.25rem', height: '3.5rem', backgroundColor: '#52b788', borderRadius: '0.125rem' }}></div>
-            <div style={{ width: '1.25rem', height: '5.5rem', backgroundColor: '#52b788', borderRadius: '0.125rem' }}></div>
-            <div style={{ width: '1.25rem', height: '1.5rem', backgroundColor: '#52b788', borderRadius: '0.125rem' }}></div>
-            <div style={{ width: '1.25rem', height: '4rem', backgroundColor: '#52b788', borderRadius: '0.125rem' }}></div>
-            </div>
+          <div style={{flex: 1, minHeight:'6.25rem'}}>
+            {dadosGrafico.labels.length > 0 && (
+              <Bar data={dadosGrafico} options={opcoesGrafico} />
+            )}
           </div>
         </div>
 
         <div className="card-estatistica">
           <div className="topo-grafico">Roubos totais registrados</div>
-          <div className="numero-total">12</div>
+          <div className="numero-total">{totalregistrado}</div>
         </div>
 
         <div className="card-estatistica">
-          <div className="topo-grafico">Ruas com mais ocorrências</div>
+          <div className="topo-grafico">Regiões com mais ocorrências</div>
             <ol className="lista-ruas">
-              <li><strong>5x</strong> - Av. Paulista</li>
-              <li><strong>4x</strong> - Rua Augusta</li>
-              <li><strong>3x</strong> - Rua Consolação</li>
+              {ruasMaisFrequentes.map((rua, index) => (
+                <li key={index}>
+                  <strong>{rua.quantidade}x</strong> - {rua.nome}
+                </li>
+              ))}
+              {ruasMaisFrequentes.length === 0 && (
+                <div style={{ opacity: 0.5 }}>Nenhum registro encontrado.</div>
+              )}
             </ol>
+        </div>
       </div>
 
       <h2 className="secao-titulo">Histórico</h2>
 
       <div className="lista-historico">
-
-        <div className="card-ocorrencia">
-          <div className="topo-ocorrencia">
-            <span className="tag-info"><b>Endereço:</b> Av. Paulista, 1000</span>
-            <span className="tag-info"><b>Período:</b> Noite</span>
-            <span className="tag-info"><b>Data:</b> 03/08/2026</span>
-          </div>
+        {ocorrencias.map((oc) => (
+          <div key={oc.Id || oc.id} className="card-ocorrencia">
+            <div className="topo-ocorrencia">
+              <span className="tag-info"><b>Região:</b> {oc.regiao_ocorrido || 'Não informado'}</span>
+              <span className="tag-info"><b>Período:</b> {oc.periodo_ocorrido || 'Não informado'}</span>
+              <span className="tag-info"><b>Data:</b> {formatarDataExibicao(oc.data_ocorrido)}</span>
+            </div>
           <div className="descricao-ocorrencia">
+            {oc.descricao || "Sem descrição disponível"}
           </div>
         </div>
+        ))}
+
+        {ocorrencias.length === 0 && (
+          <div style={{ textAlign: 'center', padding: '2rem 0', opacity: 0.5 }}>
+            Nenhuma ocorrência registrada no momento.
+          </div>
+        )}
       </div>
     </Container>
   )

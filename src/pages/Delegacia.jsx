@@ -9,16 +9,25 @@ const Container = styled.div`
   padding: 20px;
 
   .botao-voltar {
-    width: 50px;
-    height: 50px;
+    width: 3.5rem;
+    height: 3.5rem;
     border: none;
-    border-radius: 8px;
+    border-radius: 0.5rem;
     background-color: ${theme.botaoVoltar};
     cursor: pointer;
 
     display:flex;
     justify-content: center;
     align-items: center;
+  }
+
+  .iconeVoltar {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    margin-top: 1.45rem;
+    margin-left: 1.45rem; 
+    transform: scale(2.2);
   }
 
   ul {

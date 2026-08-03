@@ -9,11 +9,11 @@ import iconVoltar from '../assets/return-icon.svg'
 
 const Container = styled.div`
 
-  .botao-voltar {
-    width: 50px;
-    height: 50px;
+.botao-voltar {
+    width: 3.5rem;
+    height: 3.5rem;
     border: none;
-    border-radius: 8px;
+    border-radius: 0.5rem;
     background-color: ${theme.botaoVoltar};
     cursor: pointer;
 
