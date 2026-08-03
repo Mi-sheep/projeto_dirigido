@@ -5,7 +5,6 @@ import iconVoltar from '../assets/return-icon.svg'
 import { Link } from 'react-router-dom'
 
 const Container = styled.div`
-  background-color: ${theme.fundoTela};
   min-height: 100vh;
   padding: 20px;
 

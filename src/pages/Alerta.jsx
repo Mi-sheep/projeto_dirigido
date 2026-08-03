@@ -2,6 +2,26 @@ import React from 'react'
 import { useState } from 'react';
 import { useLocation, Navigate, useNavigate, Link } from 'react-router-dom'
 import { supabase } from '../createClient';
+import styled from 'styled-components'
+import { theme } from '../styles/theme'
+import iconVoltar from '../assets/return-icon.svg'
+
+
+const Container = styled.div`
+
+  .botao-voltar {
+    width: 50px;
+    height: 50px;
+    border: none;
+    border-radius: 8px;
+    background-color: ${theme.botaoVoltar};
+    cursor: pointer;
+
+    display:flex;
+    justify-content: center;
+    align-items: center;
+  }
+`;
 
 
 function Alerta() {
@@ -45,22 +65,16 @@ function Alerta() {
   }
 
   return (
-    <main>
+    <Container>
 
-      <header className='mobile'>
+      <header>
         <Link to={"/"}>
-
-        <button>Volta</button>
-
+          <button className="botao-voltar">
+            <img className='iconeVoltar' src={iconVoltar} alt="Voltar" />
+          </button>
         </Link>
 
         <h1>Ocorrências</h1>
-      </header>
-
-      <header className='desktop'>
-
-        <h1>Ocorrências</h1>
-
       </header>
 
     <form onSubmit={registrarDados}>
@@ -127,7 +141,7 @@ function Alerta() {
 
         
     </form>
-    </main>
+    </Container>
   )
 }
 
