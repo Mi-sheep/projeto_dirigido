@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
 import 'leaflet/dist/leaflet.css';
 
-import styles from "../styles/Map.module.css";
+import styled from 'styled-components';
+import { theme } from '../styles/theme'
 
 import { MapContainer, Marker, Popup, TileLayer, useMapEvents } from 'react-leaflet'
 import { Icon, divIcon } from 'leaflet';
@@ -10,6 +11,61 @@ import MarkerClusterGroup from 'react-leaflet-cluster';
 import { Link, Navigate, useNavigate } from "react-router-dom";
 
 import { supabase } from '../createClient';
+
+//estilos
+
+const Container = styled.div`
+  * {
+  font-family: Arial;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.map {
+  height: 90vh;
+  width: 150vh;
+  margin: 0 auto;
+}
+
+.cluster_icon {
+  height: 3rem;
+  width: 3rem;
+  border-radius: 50%;
+  background-color: aquamarine;
+  transform: translate(-35%, -35%);
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  color: black;
+  font-size: 2rem;
+  font-weight: 400;
+} 
+
+
+ header {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 0;
+    margin-bottom: 1.25rem;
+    margin-left: 15rem;
+    margin-right: 15rem;
+  }
+
+
+.logo {
+  width: 3.5rem;
+  height: 3.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  }
+
+`;
+
 
 function Map() {
 
@@ -42,6 +98,12 @@ function Map() {
     })
   }
 
+  const formatarData = (data) => {
+
+    const[ano, mes, dia] = data.split("-")
+    return `${dia}/${mes}/${ano}`;
+  }
+
   //ajuste do alerta
   const navigate = useNavigate()
   const [alerta, setAlerta] = useState(false)
@@ -64,15 +126,14 @@ function Map() {
   });
     return null;
   }
-  
 
 
   return (
-  <main>
+  <Container>
     <header>
-      <img src="https://api.iconify.design/mdi/shield.svg?color=%234285F4" style={{ width: "80px", height: "auto" }} alt="placeholder" />
+      <img className='logo' src="https://api.iconify.design/mdi/shield.svg?color=%234285F4" alt="placeholder" />
       
-      <h1>UFAssalto</h1>
+      <h1 className='titulo'>UFAssalto</h1>
 
       <Link to={"/configuracoes"}>
       <button>Configurações</button>
@@ -81,7 +142,7 @@ function Map() {
     </header>
       
     <div className='mapa'>
-      <MapContainer className = {styles.map} center = {[-23.64420573766554, -46.52851296697583]} zoom={19} minZoom={17}>
+      <MapContainer className = 'map' center = {[-23.64420573766554, -46.52851296697583]} zoom={19} minZoom={17}>
 
       <TileLayer
       attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -98,7 +159,11 @@ function Map() {
         {ocorrencia.map((ocorrencia) => (
             <Marker key={ocorrencia.id} icon ={customIcon} position={[ocorrencia.local_x, ocorrencia.local_y]}>
             <Popup> 
-              <h2>{ocorrencia.data_ocorrido}</h2>
+              <h4>Data do assalto: {formatarData(ocorrencia.data_ocorrido)}</h4>
+              <p>Período: {ocorrencia.periodo_ocorrido}</p>
+              <p>Região: {ocorrencia.regiao_ocorrido}</p>
+              <p>Descrição: {ocorrencia.descricao}</p>
+
             </Popup>
             </Marker>
         ))
@@ -110,7 +175,7 @@ function Map() {
 
   {/* botões de baixo */}
 
-    <div>
+    <div className='botoes'>
       <Link to={"/comunidade"}>
       <button>Estatísticas</button>
       </Link>
@@ -122,7 +187,7 @@ function Map() {
       </Link>
     </div>
       
-  </main>
+  </Container>
     
   )
 }

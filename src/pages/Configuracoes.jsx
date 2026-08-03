@@ -8,17 +8,11 @@ const Container = styled.div`
   min-height: 100vh;
   padding: 20px;
 
-  .botao-voltar {
-    width: 50px;
-    height: 50px;
-    border: none;
-    border-radius: 8px;
-    background-color: ${theme.botaoVoltar};
-    cursor: pointer;
-
-    display:flex;
-    justify-content: center;
+ header {
+    display: flex;
     align-items: center;
+    padding: 0.5rem 0;
+    margin-bottom: 1.25rem;
   }
 `;
 
@@ -33,7 +27,7 @@ function Configuracoes() {
               <img className='iconeVoltar' src={iconVoltar} alt="Voltar" />
             </button>
           </Link>
-        <h1>Configurações</h1>
+        <h1 className='titulo'>Configurações</h1>
       </header>
 
       <div className='botoesConfig'>
