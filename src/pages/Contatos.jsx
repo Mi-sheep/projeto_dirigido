@@ -8,17 +8,33 @@ const Container = styled.div`
   min-height: 100vh;
   padding: 20px;
 
+<<<<<<< HEAD
+ header {
+    display: flex;
+=======
   .botao-voltar {
-    width: 50px;
-    height: 50px;
+    width: 3.5rem;
+    height: 3.5rem;
     border: none;
-    border-radius: 8px;
+    border-radius: 0.5rem;
     background-color: ${theme.botaoVoltar};
     cursor: pointer;
 
     display:flex;
     justify-content: center;
+>>>>>>> origin/feat/dashboard-graficos
     align-items: center;
+    padding: 0.5rem 0;
+    margin-bottom: 1.25rem;
+  }
+
+  .iconeVoltar {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    margin-top: 1.45rem;
+    margin-left: 1.45rem; 
+    transform: scale(2.2);
   }
 `;
 
@@ -32,7 +48,7 @@ function Contatos() {
             <img className='iconeVoltar' src={iconVoltar} alt="Voltar" />
           </button>
         </Link>
-        <h1>Contatos de Emergência</h1>
+        <h1 className='titulo'>Contatos de Emergência</h1>
       </header>
 
       <section className='introducao'>
