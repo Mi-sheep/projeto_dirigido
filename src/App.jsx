@@ -33,16 +33,17 @@ const GlobalStyle = createGlobalStyle`
     flex: 1;
     text-align: center;
     font-size: 2.5rem;
-    font-weight: 400;
+    font-weight: 600;
     font-family: 'Inclusive Sans', sans-serif;
+    color: ${theme.letraTitulo};
   }
 
   .iconeVoltar {
     width: 100%;
     height: 100%;
     object-fit: contain;
-    margin-top: 1.45rem;
-    margin-left: 1.45rem; 
+    margin-top: 1rem;
+    margin-left: 1rem; 
     transform: scale(2.2);
   }
 `;

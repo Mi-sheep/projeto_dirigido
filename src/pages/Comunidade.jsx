@@ -22,34 +22,13 @@ const Container = styled.div`
     margin-bottom: 1.25rem;
   }
 
-  .botao-voltar {
-    width: 3.5rem;
-    height: 3.5rem;
-    border: none;
-    border-radius: 0.5rem;
-    background-color: ${theme.botaoVoltar};
-    cursor: pointer;
-
-    display:flex;
-    justify-content: center;
-    align-items: center;
-  }
-
   .titulo {
     flex: 1;
     text-align: center;
     font-size: 2.5rem;
-    font-weight: 400;
+    font-weight: 600;
     font-family: 'Inclusive Sans', sans-serif;
-  }
-
-  .iconeVoltar {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    margin-top: 1.45rem;
-    margin-left: 1.45rem; 
-    transform: scale(2.2);
+    color: ${theme.letraTitulo};
   }
 
   h1{
@@ -61,33 +40,36 @@ const Container = styled.div`
 
   .secao-titulo {
     font-size: 2rem;
-    font-weight: 400;
+    font-weight: 600;
     margin: 1.5rem 0 0.5rem 0;
-    color: ${theme.texto};
+    color: ${theme.letraTitulo};
   }
 
   .carrossel-graficos {
-    display:flex;
+    display: flex;
     gap: 1rem;
     overflow-x: auto;
     padding-bottom: 0.75rem;
     margin-bottom: 1rem;
+    padding-left: 0.5rem;
+    padding-right: 1.45rem;
   }
 
   .card-estatistica {
     background-color: ${theme.fundoCards};
-    border: 0.1rem solid ${props => props.theme.fundoCampos};
+    border: none;
     border-radius: 0.25rem;
     padding: 1rem;
     min-width: 18rem;
-    max-width: 20rem;
+    max-width: 23rem;
     flex: 1;
     display: flex;
     flex-direction: column;
+    box-shadow: 0.25rem 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
   }
 
   .topo-grafico {
-    font-size: 1rem;
+    font-size: 1.15rem;
     font-weight: bold;
     color: ${theme.texto};
     margin-bottom: 0.75rem;
@@ -109,6 +91,38 @@ const Container = styled.div`
     display: flex;
     flex-direction: column;
     gap: 0.4rem;
+
+    li {
+      background-color: ${theme.fundoCampos};
+      border-left: 0.25rem solid ${theme.botaoVoltar};
+      padding: 0.6rem 0.75rem;
+      border-radius: 0.15rem;
+      font-size: 0.9rem;
+      color: ${theme.texto};
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      min-height: 3rem;
+    }
+
+    .nomerua {
+      flex: 1;
+      font-weight: 400;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow:ellipsis;
+    }
+
+    .contador-alerta {
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: ${theme.texto};
+      background-color: rgba(0, 0, 0, 0.05);
+      padding: 0.2rem 0.5rem;
+      border-radius: 0.15rem;
+      white-space: nowrap;
+    }
   }
 
   .lista-historico {
@@ -312,16 +326,21 @@ function formatarDataExibicao(dataStr) {
 
         <div className="card-estatistica">
           <div className="topo-grafico">Regiões com mais ocorrências</div>
-            <ol className="lista-ruas">
+            <ul className="lista-ruas">
               {ruasMaisFrequentes.map((rua, index) => (
                 <li key={index}>
-                  <strong>{rua.quantidade}x</strong> - {rua.nome}
+                  <span className="nome-rua" title={rua.nome}>
+                    {rua.nome}
+                  </span>
+                  <span className="contador-alerta">
+                    {rua.quantidade} {rua.quantidade === 1 ? 'registro' : 'registros'}
+                  </span>
                 </li>
               ))}
               {ruasMaisFrequentes.length === 0 && (
-                <div style={{ opacity: 0.5 }}>Nenhum registro encontrado.</div>
+                <div style={{ opacity: 0.5, padding: '1rem 0', fontSize: '0.9rem' }}>Nenhum registro encontrado.</div>
               )}
-            </ol>
+            </ul>
         </div>
       </div>
 
@@ -330,12 +349,22 @@ function formatarDataExibicao(dataStr) {
       <div className="lista-historico">
         {ocorrencias.map((oc) => (
           <div key={oc.Id || oc.id} className="card-ocorrencia">
-            <div className="topo-ocorrencia">
-              <span className="tag-info"><b>Região:</b> {oc.regiao_ocorrido || 'Não informado'}</span>
-              <span className="tag-info"><b>Período:</b> {oc.periodo_ocorrido || 'Não informado'}</span>
-              <span className="tag-info"><b>Data:</b> {formatarDataExibicao(oc.data_ocorrido)}</span>
+            <div className="topo-ocorrencia" style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem'}}>
+              <div style={{ display: 'flex' }}>
+              <span className="tag-info" style={{flex: 1, whiteSpace: 'normal'}}>
+                <b>Região:</b> {oc.regiao_ocorrido || 'Não informado'}
+              </span>
             </div>
-          <div className="descricao-ocorrencia">
+            <div style={{ display: 'flex', gap: '0.5rem', width: '100%' }}>
+              <span className="tag-info" style={{ flex: 1 }}>
+                <b>Período:</b> {oc.periodo_ocorrido || 'Não informado'}
+              </span>
+              <span className="tag-info" style={{ flex: 1 }}>
+                <b>Data:</b> {formatarDataExibicao(oc.data_ocorrido)}
+              </span>
+            </div>
+          </div>
+          <div className="descricao-ocorrencia" sytle={{ marginTop: '0.5rem' }}>
             {oc.descricao || "Sem descrição disponível"}
           </div>
         </div>

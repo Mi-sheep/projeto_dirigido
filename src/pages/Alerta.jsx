@@ -11,10 +11,6 @@ const Container = styled.div`
   min-height: 100vh;
   padding: 20px;
 
-<<<<<<< HEAD
- header {
-    display: flex;
-=======
 .botao-voltar {
     width: 3.5rem;
     height: 3.5rem;
@@ -25,7 +21,6 @@ const Container = styled.div`
 
     display:flex;
     justify-content: center;
->>>>>>> origin/feat/dashboard-graficos
     align-items: center;
     padding: 0.5rem 0;
     margin-bottom: 1.25rem;
