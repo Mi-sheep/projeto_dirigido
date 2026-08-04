@@ -160,6 +160,11 @@ const Container = styled.div`
     border-radius: 0.15rem;
     color: ${theme.texto};
   }
+
+  @media(min-width:800px) {
+
+    
+  }
 `
 
 

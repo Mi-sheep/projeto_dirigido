@@ -14,15 +14,6 @@ const Container = styled.div`
     padding: 0.5rem 0;
     margin-bottom: 1.25rem;
   }
-
-  .iconeVoltar {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    margin-top: 1.45rem;
-    margin-left: 1.45rem; 
-    transform: scale(2.2);
-  }
 `;
 
 function Prevencao() {

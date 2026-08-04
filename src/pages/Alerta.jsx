@@ -10,17 +10,9 @@ import iconVoltar from '../assets/return-icon.svg'
 const Container = styled.div`
   min-height: 100vh;
   padding: 20px;
-
-.botao-voltar {
-    width: 3.5rem;
-    height: 3.5rem;
-    border: none;
-    border-radius: 0.5rem;
-    background-color: ${theme.botaoVoltar};
-    cursor: pointer;
-
-    display:flex;
-    justify-content: center;
+  
+ header {
+    display: flex;
     align-items: center;
     padding: 0.5rem 0;
     margin-bottom: 1.25rem;

@@ -46,6 +46,13 @@ const GlobalStyle = createGlobalStyle`
     margin-left: 1rem; 
     transform: scale(2.2);
   }
+
+  @media(min-width:800px) {
+
+    .botao-voltar {
+      display: none;
+    }
+  }
 `;
 
 function App() {
