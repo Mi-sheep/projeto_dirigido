@@ -25,6 +25,8 @@ const GlobalStyle = createGlobalStyle`
     display:flex;
     justify-content: center;
     align-items: center;
+    padding: 0.5rem 0;
+    margin-bottom: 1.25rem;
   }
 
   .titulo {
