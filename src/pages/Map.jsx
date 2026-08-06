@@ -127,6 +127,21 @@ function Map() {
     return null;
   }
 
+  //botão de delete
+    async function deletarOcorrencia(id_ocorrencia) {
+
+      const { data, error } = await supabase.from('ocorrencias').delete().eq('id', id_ocorrencia)
+
+    fetchOcorrencia()
+
+    if (error){
+      console.log(error)
+    }
+    if (data){
+      console.log(data)
+    }
+      
+    }
 
   return (
   <Container>
@@ -163,6 +178,7 @@ function Map() {
               <p>Período: {ocorrencia.periodo_ocorrido}</p>
               <p>Região: {ocorrencia.regiao_ocorrido}</p>
               <p>Descrição: {ocorrencia.descricao}</p>
+              <button onClick={() => {deletarOcorrencia(ocorrencia.id)}}>Deletar ocorrência</button>
 
             </Popup>
             </Marker>
