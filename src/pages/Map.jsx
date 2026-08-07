@@ -1,8 +1,10 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react';
 import 'leaflet/dist/leaflet.css';
 
 import styled from 'styled-components';
-import { theme } from '../styles/theme'
+import { theme } from '../styles/theme';
+import iconConfig from '../assets/icon-config.svg'
+import logo from '../../public/icon-ufassalto.png'
 
 import { MapContainer, Marker, Popup, TileLayer, useMapEvents } from 'react-leaflet'
 import { Icon, divIcon } from 'leaflet';
@@ -23,9 +25,33 @@ const Container = styled.div`
   box-sizing: border-box;
 }
 
+.mapa {
+  align-items: center;
+}
+
+header {
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 0.5;
+  margin-bottom: 1rem;   
+  }
+
+.config{
+  background-color: transparent;
+  border: none;    
+  cursor: pointer;
+}
+
+.logo{
+  height: 4rem;
+  width: 4rem;
+  border-radius: 50%;
+}
+
 .map {
-  height: 90vh;
-  width: 150vh;
+  height: 75vh;
+  width: 95vw;
   margin: 0 auto;
 }
 
@@ -41,30 +67,19 @@ const Container = styled.div`
   color: black;
   font-size: 2rem;
   font-weight: 400;
-} 
-
-
- header {
-    display: flex;
-    align-items: center;
-    padding: 0.5rem 0;
-    margin-bottom: 1.25rem;
-    margin-left: 15rem;
-    margin-right: 15rem;
-  }
-
-
-.logo {
-  width: 3.5rem;
-  height: 3.5rem;
-  border: none;
-  border-radius: 0.5rem;
-  display:flex;
-  justify-content: center;
-  align-items: center;
-  }
+}
 
 `;
+
+// .logo {
+//   width: 3.5rem;
+//   height: 3.5rem;
+//   border: none;
+//   border-radius: 0.5rem;
+//   display:flex;
+//   justify-content: center;
+//   align-items: center;
+//   }
 
 
 function Map() {
@@ -127,16 +142,31 @@ function Map() {
     return null;
   }
 
+  //botão de delete
+    async function deletarOcorrencia(id_ocorrencia) {
+
+      const { data, error } = await supabase.from('ocorrencias').delete().eq('id', id_ocorrencia)
+
+    fetchOcorrencia()
+
+    if (error){
+      console.log(error)
+    }
+    if (data){
+      console.log(data)
+    }
+      
+    }
 
   return (
   <Container>
     <header>
-      <img className='logo' src="https://api.iconify.design/mdi/shield.svg?color=%234285F4" alt="placeholder" />
+      <img className='logo' src={logo} alt="Logo da UFAssalto" />
       
       <h1 className='titulo'>UFAssalto</h1>
 
       <Link to={"/configuracoes"}>
-      <button>Configurações</button>
+      <button className='config'><img src={iconConfig} alt="Configurações" /></button>
       </Link>
 
     </header>
@@ -163,6 +193,7 @@ function Map() {
               <p>Período: {ocorrencia.periodo_ocorrido}</p>
               <p>Região: {ocorrencia.regiao_ocorrido}</p>
               <p>Descrição: {ocorrencia.descricao}</p>
+              <button onClick={() => {deletarOcorrencia(ocorrencia.id)}}>Deletar ocorrência</button>
 
             </Popup>
             </Marker>

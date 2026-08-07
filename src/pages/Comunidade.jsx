@@ -23,11 +23,6 @@ const Container = styled.div`
   }
 
   .titulo {
-    flex: 1;
-    text-align: center;
-    font-size: 2.5rem;
-    font-weight: 600;
-    font-family: 'Inclusive Sans', sans-serif;
     color: ${theme.letraTitulo};
   }
 
@@ -138,12 +133,6 @@ const Container = styled.div`
     padding: 0.75rem;
   }
 
-  .topo-ocorrencia {
-    display: flex;
-    gap: 0.5rem;
-    margin-bottom: 0.5rem;
-  }
-
   .tag-info {
     background-color: ${theme.fundoCampos};
     padding: 0.25rem 0.75rem;
@@ -161,8 +150,67 @@ const Container = styled.div`
     color: ${theme.texto};
   }
 
-  @media(min-width:800px) {
+  .topo-ocorrencia {
+    display: flex;
+    gap: 0.4rem;
+    margin-bottom: 0.5rem;
+    flex-direction: column;
+  }
 
+  .linha-regiao{
+    display: flex;
+  }
+
+  .linha-info{
+    display: flex;
+    gap: 0.5rem;
+    width: 100%;
+  }
+
+  .linha-info .tag-info {
+    flex: 1;
+  }
+  
+  .regiao{
+    flex: 1;
+    white-space: normal;
+  }
+
+  @media(min-width:800px) {
+    padding: 0 5rem;
+
+    header {
+      display: flex;
+      align-items: left;
+      padding: 0.5rem 0.25rem;
+      margin-bottom: 1.25rem;
+  }
+
+    .titulo {
+      flex: 1;
+      text-align: left;
+      font-size: 2.5rem;
+      font-weight: 600;
+      font-family: 'Inclusive Sans', sans-serif;
+      color: ${theme.letraTitulo};
+  }
+    .carrossel-graficos{
+      flex-direction: row;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .topo-ocorrencia{
+        flex-direction: row;
+        align-items: center;
+      }
+
+    .linha-regiao, .linha-info{
+      flex: 1;
+    }
+    .regiao {
+      flex: 2;
+    }
     
   }
 `
@@ -354,21 +402,23 @@ function formatarDataExibicao(dataStr) {
       <div className="lista-historico">
         {ocorrencias.map((oc) => (
           <div key={oc.Id || oc.id} className="card-ocorrencia">
-            <div className="topo-ocorrencia" style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem'}}>
-              <div style={{ display: 'flex' }}>
-              <span className="tag-info" style={{flex: 1, whiteSpace: 'normal'}}>
-                <b>Região:</b> {oc.regiao_ocorrido || 'Não informado'}
+            <div className="topo-ocorrencia" style={{ }}>
+              <div className='linha-regiao'>
+                <span className="tag-info regiao">
+                  <strong>Região:</strong> {oc.regiao_ocorrido || 'Não informado'}
+                </span>
+              </div>
+
+            <div className='linha-info'>
+              <span className="tag-info">
+                <strong>Período:</strong> {oc.periodo_ocorrido || 'Não informado'}
               </span>
-            </div>
-            <div style={{ display: 'flex', gap: '0.5rem', width: '100%' }}>
-              <span className="tag-info" style={{ flex: 1 }}>
-                <b>Período:</b> {oc.periodo_ocorrido || 'Não informado'}
-              </span>
-              <span className="tag-info" style={{ flex: 1 }}>
-                <b>Data:</b> {formatarDataExibicao(oc.data_ocorrido)}
+              <span className="tag-info">
+                <strong>Data:</strong> {formatarDataExibicao(oc.data_ocorrido)}
               </span>
             </div>
           </div>
+
           <div className="descricao-ocorrencia" sytle={{ marginTop: '0.5rem' }}>
             {oc.descricao || "Sem descrição disponível"}
           </div>
