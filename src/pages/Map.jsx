@@ -5,6 +5,10 @@ import styled from 'styled-components';
 import { theme } from '../styles/theme';
 import iconConfig from '../assets/icon-config.svg'
 import logo from '../../public/icon-ufassalto.png'
+import iconAlerta from '../assets/icon-alerta.svg'
+import iconMural from '../assets/icon-mural.svg'
+import iconCancelar from '../assets/icon-cancelar.svg'
+import iconComunidade from '../assets/icon-comunidade.svg'
 
 import { MapContainer, Marker, Popup, TileLayer, useMapEvents } from 'react-leaflet'
 import { Icon, divIcon } from 'leaflet';
@@ -14,7 +18,7 @@ import { Link, Navigate, useNavigate } from "react-router-dom";
 
 import { supabase } from '../createClient';
 
-//estilos
+//estilo
 
 const Container = styled.div`
   * {
@@ -34,13 +38,15 @@ header {
   display: flex;
   align-items: center;
   padding: 0.5rem 0.5;
-  margin-bottom: 1rem;   
+  margin-bottom: 0.5rem;   
   }
 
 .config{
   background-color: transparent;
   border: none;    
   cursor: pointer;
+  height: 5rem;
+  width: 5rem;
 }
 
 .logo{
@@ -69,18 +75,49 @@ header {
   font-weight: 400;
 }
 
+.botoes{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.containerBotoes{
+  display: flex;
+  align-items: center;
+  width: 100vw;
+}
+
+.botaoCircular{
+  width: 3.5rem;
+  height: 3.5rem;
+  border: none;
+  border-radius: 50%;
+  background-color: ${theme.botaoVoltar};
+  cursor: pointer;
+
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem 0;
+  margin-bottom: 1.25rem;
+}
+
+.botaoQuadrado{
+  width: 5rem;
+  height: 2.75rem;
+  border: none;
+  border-radius: 0.1rem;
+  background-color: ${theme.botaoVoltar};
+  cursor: pointer;
+
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem 0;
+  margin-bottom: 1.25rem;
+}
+
 `;
-
-// .logo {
-//   width: 3.5rem;
-//   height: 3.5rem;
-//   border: none;
-//   border-radius: 0.5rem;
-//   display:flex;
-//   justify-content: center;
-//   align-items: center;
-//   }
-
 
 function Map() {
 
@@ -206,15 +243,15 @@ function Map() {
 
   {/* botões de baixo */}
 
-    <div className='botoes'>
+    <div className='containerBotoes'>
       <Link to={"/comunidade"}>
-      <button>Estatísticas</button>
+      <button className='botaoQuadrado'><img className='botoes' src={iconComunidade} alt="Estatísticas"/></button>
       </Link>
 
-      <button onClick={() => {setAlerta(!alerta); alerta ? alert("Selecione o botão novamente para ativar o modo de alerta") : alert("Selecione o local do assalto")}}>{alerta ? "Alerta!!" : "Alerta?"}</button>
+      <button className='botaoCircular' onClick={() => {setAlerta(!alerta); alerta ? alert("Selecione o botão novamente para ativar o modo de alerta") : alert("Selecione o local do assalto")}}>{alerta ? <img className='alerta botoes' src={iconCancelar} alt='Cancelar ocorrência'/> : <img className='alerta botoes' src={iconAlerta} alt='Registrar ocorrência'/>}</button>
 
       <Link to={"/murals"}>
-      <button>Mural</button>
+      <button className='botaoQuadrado'><img className='botoes' src={iconMural} alt="Mural de informações" /></button>
       </Link>
     </div>
       
