@@ -34,44 +34,62 @@ const Container = styled.div`
 }
 
 header {
-  width: 100vw;
+  box-sizing: border-box;
+  width: 100%;
   display: flex;
   align-items: center;
-  padding: 0.5rem 0.5;
-  margin-bottom: 0.5rem;   
-  }
+  padding: 0.5rem 0.6rem;
+  margin-bottom: 0.5rem;
+  margin-top: 2vh;
+  height: 10vh;
+  gap: 0.75rem;
+}
 
-.config{
+h2 {
+  color: ${theme.letraTitulo};
+  font-weight: 400;
+}
+
+.link{
+  margin-left: auto;
+}
+
+.configBotao{
   background-color: transparent;
   border: none;    
   cursor: pointer;
-  height: 5rem;
-  width: 5rem;
+  width: 3.5rem;
+  height: 3.5rem;
+}
+
+.config{
+  width: 100%;
+  height: 100%;
 }
 
 .logo{
-  height: 4rem;
-  width: 4rem;
+  height: 3.5rem;
+  width: 3.5rem;
   border-radius: 50%;
 }
 
 .map {
-  height: 75vh;
+  height: 73vh;
   width: 95vw;
   margin: 0 auto;
 }
 
-.cluster_icon {
+.cluster-icon {
   height: 3rem;
   width: 3rem;
   border-radius: 50%;
-  background-color: aquamarine;
+  background-color: red;
   transform: translate(-35%, -35%);
   align-items: center;
   justify-content: center;
   display: flex;
-  color: black;
-  font-size: 2rem;
+  color: white;
+  font-size: 1.65rem;
   font-weight: 400;
 }
 
@@ -84,18 +102,21 @@ header {
 .containerBotoes{
   display: flex;
   align-items: center;
-  width: 100vw;
+  width: 100%;
+  height: 17vh;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
 }
 
 .botaoCircular{
-  width: 3.5rem;
-  height: 3.5rem;
+  width: 4.5rem;
+  height: 4.5rem;
   border: none;
   border-radius: 50%;
   background-color: ${theme.botaoVoltar};
   cursor: pointer;
 
-  display:flex;
+  display: flex;
   justify-content: center;
   align-items: center;
   padding: 0.5rem 0;
@@ -103,10 +124,10 @@ header {
 }
 
 .botaoQuadrado{
-  width: 5rem;
-  height: 2.75rem;
+  width: 6rem;
+  height: 3.5rem;
   border: none;
-  border-radius: 0.1rem;
+  border-radius: 0.2rem;
   background-color: ${theme.botaoVoltar};
   cursor: pointer;
 
@@ -115,6 +136,31 @@ header {
   align-items: center;
   padding: 0.5rem 0;
   margin-bottom: 1.25rem;
+}
+
+@media(min-width:800px) {
+
+  header{
+    height: 8vh;
+    padding-left: 1.5rem;
+    padding-right: 1.7rem;
+  }
+
+  .containerBotoes{
+    padding: 0 2rem;
+    margin-top: 0.4rem;
+  }
+
+  .botaoCircular{
+    width: 6.5rem;
+    height: 6.5rem;
+  }
+
+  .botaoQuadrado{
+    width: 10rem;
+    height: 5.5rem;
+  }
+
 }
 
 `;
@@ -200,10 +246,10 @@ function Map() {
     <header>
       <img className='logo' src={logo} alt="Logo da UFAssalto" />
       
-      <h1 className='titulo'>UFAssalto</h1>
+      <h2>UFAssalto</h2>
 
-      <Link to={"/configuracoes"}>
-      <button className='config'><img src={iconConfig} alt="Configurações" /></button>
+      <Link className='link' to={"/configuracoes"}>
+      <button className='configBotao'><img className='config' src={iconConfig} alt="Configurações" /></button>
       </Link>
 
     </header>
