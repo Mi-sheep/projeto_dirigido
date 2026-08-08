@@ -4,7 +4,7 @@ import 'leaflet/dist/leaflet.css';
 import styled from 'styled-components';
 import { theme } from '../styles/theme';
 import iconConfig from '../assets/icon-config.svg'
-import logo from '../../public/icon-ufassalto.png'
+import logo from '../assets/icon-ufassalto.png'
 import iconAlerta from '../assets/icon-alerta.svg'
 import iconMural from '../assets/icon-mural.svg'
 import iconCancelar from '../assets/icon-cancelar.svg'
@@ -79,10 +79,24 @@ h2 {
   margin: 0 auto;
 }
 
+.popup{
+  padding: 1rem;
+}
+
+.deletar{
+  color: white;
+  font-weight: 700;
+  width: 9rem;
+  height: 2rem;
+  border: none;
+  border-radius: 0.2rem;
+  background-color: ${theme.botaoVoltar};
+  cursor: pointer;
+}
+
 .cluster-icon {
   height: 3rem;
   width: 3rem;
-  border-radius: 50%;
   background-color: red;
   transform: translate(-35%, -35%);
   align-items: center;
@@ -91,6 +105,12 @@ h2 {
   color: white;
   font-size: 1.65rem;
   font-weight: 400;
+  clip-path: polygon(
+    50% 0%,
+    100% 50%,
+    50% 100%,
+    0% 50%
+  );
 }
 
 .botoes{
@@ -271,13 +291,14 @@ function Map() {
 
         {ocorrencia.map((ocorrencia) => (
             <Marker key={ocorrencia.id} icon ={customIcon} position={[ocorrencia.local_x, ocorrencia.local_y]}>
-            <Popup> 
+            <Popup>
+              <div className='popup'>
               <h4>Data do assalto: {formatarData(ocorrencia.data_ocorrido)}</h4>
               <p>Período: {ocorrencia.periodo_ocorrido}</p>
               <p>Região: {ocorrencia.regiao_ocorrido}</p>
               <p>Descrição: {ocorrencia.descricao}</p>
-              <button onClick={() => {deletarOcorrencia(ocorrencia.id)}}>Deletar ocorrência</button>
-
+              <button className='deletar' onClick={() => {deletarOcorrencia(ocorrencia.id)}}>Deletar ocorrência</button>
+              </div> 
             </Popup>
             </Marker>
         ))
