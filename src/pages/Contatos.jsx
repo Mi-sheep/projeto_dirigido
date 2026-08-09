@@ -5,16 +5,145 @@ import { theme } from '../styles/theme'
 import iconVoltar from '../assets/return-icon.svg'
 
 const Container = styled.div`
-  min-height: 100vh;
-  padding: 20px;
+  min-height: 100dvh;
+  padding: 1.25rem 1rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
 
  header {
+    box-sizing: border-box;
+    width: 100%;
     display: flex;
     align-items: center;
-    padding: 0.5rem 0;
-    margin-bottom: 1.25rem;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 2rem;
+    min-height: 3.5rem;
+ 
+
+    a {
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      text-decoration: none;
+      z-index: 10;
+    }
+
+    .titulo {
+      margin: 0;
+      width: 100%;
+      text-align: center;
+      font-size: 1.8rem;
+      padding: 0 3.5rem;
+      box-sizing: border-box;
+    }
+ }
+
+ .introducao {
+  background-color: ${theme.fundoCards};
+  border-radius: 0.5rem;
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.15);
+  width: 100%;
+  box-sizing: border-box;
+
+  h4 {
+    margin: 0 0 0.75rem 0;
+    font-size: 1.05rem;
+    font-weight: 700;
+    line-height: 1.35;
+    text-align: justify;
   }
 
+  p {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    text-align: justify;
+  }
+ }
+
+.contato {
+  background-color: ${theme.fundoCards};
+  border-radius: 0.5rem;
+  padding: 1.25rem;
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.15);
+  width: 100%;
+  box-sizing: border-box;
+  list-style: none;
+  margin:  0 0 1.5rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+
+  li {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    width: 100%;
+
+    strong {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+
+    p {
+      margin: 0;
+      font-size: 0.95rem;
+      line-height: 1.35;
+      text-align: justify;
+    }
+  }
+}
+
+.container-telefone {
+  background-color: ${theme.fundoCards};
+  border-radius: 0.5rem;
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.15);
+  width: 100%;
+  box-sizing: border-box;
+
+  .titulo-telefone {
+    margin: 0 0 1rem 0;
+    font-size: 1.05rem;
+    font-weight: 700;
+    text-align: left;
+  }
+
+  .telefone {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+
+    li {
+      p {
+        margin: 0;
+        font-size: 0.95rem;
+        line-height: 1.35;
+        text-align: justify;
+      }
+
+      strong {
+        color: #000000;
+        font-weight: 700;
+      }
+    }
+  }
+}
 `;
 
 function Contatos() {
@@ -67,31 +196,33 @@ function Contatos() {
 
       </ul>
 
-      <h4>Ao telefonar: </h4>
+      <div className='container-telefone'>
+        <h4 className='titulo-telefone'>Ao telefonar:</h4>
 
-      <ul className='telefone'>
+        <ul className='telefone'>
 
-        <li>
+          <li>
             <p><strong>Fique calmo - </strong> Caso o munícipe esteja nervoso, a comunicação pode ser prejudicada e o entendimento do caso mais demorado, atrasando, assim, o acionamento da equipe.</p>
-        </li>
+          </li>
 
-        <li>
+          <li>
             <p><strong>Identifique-se fornecendo o nome e o telefone de contato - </strong>Assim que o atendente receber a ligação, de imediato, informe seu nome e o telefone para contato. Caso a ligação seja perdida, o atendente terá condições de retornar a ligação para o munícipe.</p>
-        </li>
+          </li>
 
-        <li>
+          <li>
             <p><strong>Diga exatamente o que está acontecendo - </strong>É primordial que seja informado o que realmente esteja acontecendo no local para que seja determinado o nível de emergência da ocorrência.</p>
-        </li>
+          </li>
 
-        <li>
+          <li>
             <p><strong>Informe se há vítimas. Havendo, forneça precisamente o número de pessoas - </strong>Fornecendo o número exato de pessoas, o atendente aciona o número de equipes necessárias para o atendimento.</p>
-        </li>
+          </li>
 
-        <li>
+          <li>
             <p><strong>Forneça corretamente o endereço e, se possível, uma ou mais referências - </strong>Quanto mais precisa for a localização passada, mais rápido a equipe chegará ao local. Por isso, informe o maior número de referências possíveis e o endereço, com numeral, corretamente.</p>
-        </li>
+          </li>
 
-      </ul>
+        </ul>
+      </div>
 
     </Container>
   )
