@@ -19,7 +19,7 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  max-width: 480px;
+  max-width: 750px;
   margin: 0 auto;
 
 
@@ -109,7 +109,7 @@ const Container = styled.div`
 
       .titulo {
         text-align: left;
-        margit-right: auto;
+        margin-right: auto;
         padding-left: 0.4rem;
         flex: 0 1 auto;
       }
