@@ -28,7 +28,7 @@ const Container = styled.div`
       flex: 1;
       text-align: center;
       margin: 0;
-      font-size: 1.8rem;
+      font-size: 1.9rem;
       margin-left: auto;
       white-space: nowrap;
       overflow: hidden;

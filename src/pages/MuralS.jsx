@@ -34,7 +34,7 @@ const Container = styled.div`
 
     .titulo {
       text-align: center;
-      padding-left: 3.5rem;
+      padding-left: 0rem;
       box-sizing: border-box;
       flex: 1;
     }

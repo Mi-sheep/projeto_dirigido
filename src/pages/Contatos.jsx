@@ -29,7 +29,7 @@ const Container = styled.div`
       margin: 0;
       width: 100%;
       text-align: center;
-      font-size: 1.8rem;
+      font-size: 1.9rem;
       padding: 0 3.5rem;
       box-sizing: border-box;
     }

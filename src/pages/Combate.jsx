@@ -36,7 +36,7 @@ const Container = styled.div`
   .titulo {
     flex: 1;
     text-align: center;
-    font-size: 2.1rem;
+    font-size: 1.9rem;
     font-weight: 600;
     font-family: 'Inclusive Sans', sans-serif;
     color: ${theme.letraTitulo};

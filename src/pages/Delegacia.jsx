@@ -25,19 +25,24 @@ const Container = styled.div`
     margin-bottom: 1.5rem;
     min-height: 3.5rem;
     padding-top: 0.25rem;
-  
-  .titulo {
+
+    .botao-voltar {
+      position: absolute;
+      left: 0;
+      top: 0;
+      margin-bottom: 0;
+    }
+
+    .titulo {
       flex: 1;
       text-align: center;
-      font-size: 2.1rem;
-      font-weight: 600;
-      font-family: 'Inclusive Sans', sans-serif;
-      color: ${theme.letraTitulo};
       margin: 0;
-      margin-left: -2rem;
-      padding-left: 0;
-      padding-right: 0.5rem;
+      font-size: 1.9rem;
+      margin-left: 3.5rem;
+      overflow: hidden;
+      padding-top: 0.3rem;
     }
+  
   }
 
   section {
