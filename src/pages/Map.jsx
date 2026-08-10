@@ -60,6 +60,10 @@ h2 {
   cursor: pointer;
   width: 3.5rem;
   height: 3.5rem;
+
+  &:hover {
+      transform: scale(1.02);
+    }
 }
 
 .config{
@@ -71,6 +75,7 @@ h2 {
   height: 3.5rem;
   width: 3.5rem;
   border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .map {
@@ -92,6 +97,10 @@ h2 {
   border-radius: 0.2rem;
   background-color: ${theme.botaoVoltar};
   cursor: pointer;
+
+  &:hover {
+      transform: scale(1.02);
+    }
 }
 
 .cluster-icon {
@@ -141,6 +150,11 @@ h2 {
   align-items: center;
   padding: 0.5rem 0;
   margin-bottom: 1.25rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+
+  &:hover {
+      transform: scale(1.02);
+    }
 }
 
 .botaoQuadrado{
@@ -156,6 +170,11 @@ h2 {
   align-items: center;
   padding: 0.5rem 0;
   margin-bottom: 1.25rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+
+  &:hover {
+      transform: scale(1.02);
+    }
 }
 
 @media(min-width:800px) {

@@ -30,21 +30,11 @@ const Container = styled.div`
     align-items: flex-start;
     justify-content: center;
     position: relative;
-    margin-bottom: 1.5;
     padding-top: 0.5rem;
-
-    a {
-      display: flex;
-      text-decoration: none;
-      position: absolute;
-      left: 0;
-      top: 0.5rem;
-      z-index: 5;
-    }
 
     .titulo {
       text-align: center;
-      padding-left: 0 3.5rem;
+      padding-left: 3.5rem;
       box-sizing: border-box;
       flex: 1;
     }
@@ -105,13 +95,65 @@ const Container = styled.div`
       object-fit: contain;
     }
   }
+
+  @media(min-width:800px) {
+    max-width: none;
+    align-items: normal;
+    padding-top: 0;
+
+    header{
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+
+      .titulo {
+        text-align: left;
+        margit-right: auto;
+        padding-left: 0.4rem;
+        flex: 0 1 auto;
+      }
+    }
+
+    .cartaoMural {
+      background-color: ${theme.fundoCards};
+      border: none;
+      border-radius: 0.5rem;
+      padding: 1.25rem 1.5rem;
+      width: 100%;
+    
+      span {
+        color: ${theme.texto};
+        font-size: 1.7rem;
+        font-weight: 500;
+        line-height: 1.3;
+      } 
+    }
+
+    .botoesM {
+      padding: 0.75rem 0.5rem;
+    }
+    
+    .icon-container {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      margin-top: auto;
+
+      img {
+        width: 3rem;
+        height: 3rem;
+        object-fit: contain;
+      }
+    }
+  }
 `;
 
 
 function MuralS() {
   return (
     <Container>
-      
+
       <header>
         <Link to={"/"}>
           <button className="botao-voltar">
@@ -122,7 +164,7 @@ function MuralS() {
       </header>
 
       <div className='botoesM'>
-        
+
         <Link to={"/prevencao"}>
           <button className='cartaoMural'>
             <span>Guia de Prevenção</span>
@@ -131,7 +173,7 @@ function MuralS() {
             </div>
           </button>
         </Link>
-        
+
         <Link to={"/contatos-de-emergencia"}>
           <button className='cartaoMural'>
             <span>Contatos de Emergência</span>
@@ -149,7 +191,7 @@ function MuralS() {
             </div>
           </button>
         </Link>
-        
+
         <Link to={"/como-os-assaltos-afetam-o-psicologico-das-vitimas"}>
           <button className='cartaoMural'>
             <span>Como assaltos afetam as vítimas</span>
@@ -176,7 +218,7 @@ function MuralS() {
             </div>
           </button>
         </a>
-        
+
       </div>
 
     </Container>
