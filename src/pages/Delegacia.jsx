@@ -3,20 +3,108 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components'
 import { theme } from '../styles/theme'
 import iconVoltar from '../assets/return-icon.svg'
+import imgAssalto from '../assets/img-assalto.png'
 
 const Container = styled.div`
-  min-height: 100vh;
-  padding: 20px;
+  min-height: 100dvh;
+  padding: 1.25rem 1rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+  max-width: 750px;
+  margin: 0 auto;
 
   header {
+    box-sizing: border-box;
+    width: 100%;
     display: flex;
-    align-items: center;
-    padding: 0.5rem 0;
-    margin-bottom: 1.25rem;
+    align-items: flex-start;
+    position: relative;
+    margin-bottom: 1.5rem;
+    min-height: 3.5rem;
+    padding-top: 0.25rem;
+  
+  .titulo {
+      flex: 1;
+      text-align: center;
+      font-size: 2.1rem;
+      font-weight: 600;
+      font-family: 'Inclusive Sans', sans-serif;
+      color: ${theme.letraTitulo};
+      margin: 0;
+      margin-left: -2rem;
+      padding-left: 0;
+      padding-right: 0.5rem;
+    }
   }
 
+  section {
+    background-color: ${theme.fundoCards};
+    border-radius: 0.5rem;
+    padding: 1.25rem;
+    margin-bottom: 1.25rem;
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.15);
+    width: 100%;
+    box-sizing: border-box;
+
+    h4 {
+      margin: 0 0 0.75rem 0;
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+
+    ul + h4 {
+      margin-top: 1.5rem;
+    }
+
+    p {
+      margin: 0 0 0.75rem 0;
+      font-size: 0.95rem;
+      line-height: 1.4;
+      text-align: justify;
+    }
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .box-img {
+    width: 100%;
+    height: 250px;
+    margin-bottom: 1.25rem;
+    box-sizing: border-box;
+    display: block;
+    overflow: hidden;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.15);
+      
+    img {
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+      transform: scale(1.4);
+    }
+  }
+  
   ul {
-    padding-left: 10rem;
+    margin: 0.5rem 0 0 0;
+    padding-left: 1.25rem;
+  }
+
+  li {
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+    text-align: justify;
+  }
+
+  li:last-child {
+    margin-bottom: 0;
   }
 `;
 
@@ -33,17 +121,21 @@ function Delegacia() {
         <h1 className='titulo'>Delegacia Eletrônica</h1>
       </header>
 
-      <section className='importancia'>
+      <section>
 
-        <h3>A importância do Boletim de Ocorrência.</h3>
+        <h4>A importância do Boletim de Ocorrência.</h4>
 
         <p>A Delegacia Eletrônica é um serviço que permite registrar ocorrências pela internet, oferecendo mais praticidade, economia de tempo e acessibilidade ao cidadão. Além de reduzir a necessidade de atendimento presencial nas unidades policiais, o sistema agiliza a comunicação entre a população e as autoridades.</p>
 
         <p>O boletim de ocorrência é a comunicação oficial de um fato à polícia. A partir desse registro, as autoridades podem adotar as medidas cabíveis, iniciar investigações e garantir os direitos da vítima. É importante destacar que o B.O. não constitui uma prova definitiva, mas sim o relato inicial dos acontecimentos.</p>
       </section>
 
+      <div className="box-img">
+        <img src={imgAssalto} alt="Imagem de documento" />
+      </div>
+
       <section>
-        <h3>Quando registrar um B.O.?</h3>
+        <h4>Quando registrar um B.O.?</h4>
 
         <p>É recomendado registrar um boletim de ocorrência sempre que ocorrer:</p>
 
@@ -64,19 +156,19 @@ function Delegacia() {
       </section>
 
       <section>
-        <h3>Como registrar um Boletim de Ocorrência Digital</h3>
+        <h4>Como registrar um Boletim de Ocorrência Digital</h4>
 
-        <ol>
-            <li>Acesse a Delegacia Eletrônica e faça login com sua conta ou utilize o acesso pelo Gov.br.</li>
+        <ul>
+            <li>1. Acesse a Delegacia Eletrônica e faça login com sua conta ou utilize o acesso pelo Gov.br.</li>
 
-            <li>Clique em "Comunicar Ocorrência" e selecione o tipo de ocorrência desejada (como furto, estelionato, perda de documentos ou acidente de trânsito sem vítimas).</li>
+            <li>2. Clique em "Comunicar Ocorrência" e selecione o tipo de ocorrência desejada (como furto, estelionato, perda de documentos ou acidente de trânsito sem vítimas).</li>
 
-            <li>Preencha os campos obrigatórios com um relato claro e objetivo, além das informações dos envolvidos.</li>
+            <li>3. Preencha os campos obrigatórios com um relato claro e objetivo, além das informações dos envolvidos.</li>
 
-            <li>Envie o formulário e anote o número do protocolo para acompanhar o andamento da solicitação pelo site ou por e-mail.</li>
-        </ol>
+            <li>4. Envie o formulário e anote o número do protocolo para acompanhar o andamento da solicitação pelo site ou por e-mail.</li>
+        </ul>
 
-        <h3>Dicas Importantes</h3>
+        <h4>Dicas Importantes</h4>
 
         <ul>
             <li>Guarde o número do protocolo gerado após o registro;</li>
