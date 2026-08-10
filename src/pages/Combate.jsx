@@ -62,6 +62,7 @@ const Container = styled.div`
       margin: 0 0 0.75rem 0;
       font-size: 0.95rem;
       line-height: 1.4;
+      text-align: justify;
     }
 
     p:last-child {
