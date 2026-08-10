@@ -45,15 +45,7 @@ const Container = styled.div`
   
   }
 
-  section {
-    background-color: ${theme.fundoCards};
-    border-radius: 0.5rem;
-    padding: 1.25rem;
-    margin-bottom: 1.25rem;
-    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.15);
-    width: 100%;
-    box-sizing: border-box;
-
+  section{
     h4 {
       margin: 0 0 0.75rem 0;
       font-size: 1.2rem;
@@ -74,6 +66,26 @@ const Container = styled.div`
     p:last-child {
       margin-bottom: 0;
     }
+  }
+
+  section:not(.bo) {
+    background-color: ${theme.fundoCards};
+    border-radius: 0.5rem;
+    padding: 1.25rem;
+    margin-bottom: 1.25rem;
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.15);
+    width: 100%;
+    box-sizing: border-box;
+  }
+    
+  .bo {
+    background-color: ${theme.fundoCards};
+    border-radius: 0.5rem;
+    padding: 1.25rem;
+    margin-bottom: 1.25rem;
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.15);
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .box-img {
@@ -122,15 +134,53 @@ const Container = styled.div`
         padding-left: 0.2rem;
         flex: 0 1 auto;
         font-size: 2.25rem;
+        margin-left: 0.5rem;
       }
     }
+
+    section {
+      h4 {
+        font-size: 1.45rem;
+      }
+
+      p {
+        font-size: 1.2rem;
+      }
+    }
+
+    li {
+      font-size: 1.2rem;
+    }
   }
+
+@media(min-width:1200px){
+    .bo{
+      width: 40%;
+    }
+
+    .box-img {
+      width: 60%;
+      
+      img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: fill;
+      }
+    }
+
+    .texto-img{
+      display: flex;
+      gap: 1rem;
+      align-items: stetch;
+    }
+}
 `;
 
 function Delegacia() {
   return (
     <Container>
-      
+
       <header>
         <Link to={"/murals"}>
           <button className="botao-voltar">
@@ -149,16 +199,14 @@ function Delegacia() {
         <p>O boletim de ocorrência é a comunicação oficial de um fato à polícia. A partir desse registro, as autoridades podem adotar as medidas cabíveis, iniciar investigações e garantir os direitos da vítima. É importante destacar que o B.O. não constitui uma prova definitiva, mas sim o relato inicial dos acontecimentos.</p>
       </section>
 
-      <div className="box-img">
-        <img src={imgAssalto} alt="Imagem de documento" />
-      </div>
+      <div className='texto-img'>
 
-      <section>
-        <h4>Quando registrar um B.O.?</h4>
+        <section className='bo'>
+          <h4>Quando registrar um B.O.?</h4>
 
-        <p>É recomendado registrar um boletim de ocorrência sempre que ocorrer:</p>
+          <p>É recomendado registrar um boletim de ocorrência sempre que ocorrer:</p>
 
-        <ul>
+          <ul>
             <li>Furto ou roubo;</li>
 
             <li>Ameaça, agressão ou violência doméstica;</li>
@@ -170,33 +218,39 @@ function Delegacia() {
             <li>Golpes, fraudes ou estelionatos, inclusive os praticados pela internet;</li>
 
             <li>Danos ao patrimônio público ou privado.</li>
-        </ul>
+          </ul>
 
-      </section>
+        </section>
+
+        <div className="box-img">
+          <img src={imgAssalto} alt="Imagem de documento" />
+        </div>
+
+      </div>
 
       <section>
         <h4>Como registrar um Boletim de Ocorrência Digital</h4>
 
         <ul>
-            <li>1. Acesse a Delegacia Eletrônica e faça login com sua conta ou utilize o acesso pelo Gov.br.</li>
+          <li>1. Acesse a Delegacia Eletrônica e faça login com sua conta ou utilize o acesso pelo Gov.br.</li>
 
-            <li>2. Clique em "Comunicar Ocorrência" e selecione o tipo de ocorrência desejada (como furto, estelionato, perda de documentos ou acidente de trânsito sem vítimas).</li>
+          <li>2. Clique em "Comunicar Ocorrência" e selecione o tipo de ocorrência desejada (como furto, estelionato, perda de documentos ou acidente de trânsito sem vítimas).</li>
 
-            <li>3. Preencha os campos obrigatórios com um relato claro e objetivo, além das informações dos envolvidos.</li>
+          <li>3. Preencha os campos obrigatórios com um relato claro e objetivo, além das informações dos envolvidos.</li>
 
-            <li>4. Envie o formulário e anote o número do protocolo para acompanhar o andamento da solicitação pelo site ou por e-mail.</li>
+          <li>4. Envie o formulário e anote o número do protocolo para acompanhar o andamento da solicitação pelo site ou por e-mail.</li>
         </ul>
 
         <h4>Dicas Importantes</h4>
 
         <ul>
-            <li>Guarde o número do protocolo gerado após o registro;</li>
+          <li>Guarde o número do protocolo gerado após o registro;</li>
 
-            <li>Informe os fatos com o máximo de precisão possível, incluindo data, horário, local e, se houver, testemunhas;</li>
+          <li>Informe os fatos com o máximo de precisão possível, incluindo data, horário, local e, se houver, testemunhas;</li>
 
-            <li>Utilize apenas os canais oficiais para registrar a ocorrência;</li>
+          <li>Utilize apenas os canais oficiais para registrar a ocorrência;</li>
 
-            <li>Em situações graves ou urgentes, procure imediatamente uma unidade policial ou orientação jurídica.</li>
+          <li>Em situações graves ou urgentes, procure imediatamente uma unidade policial ou orientação jurídica.</li>
         </ul>
 
       </section>
