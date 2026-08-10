@@ -12,7 +12,7 @@ const Container = styled.div`
   flex-direction: column;
   align-items: stretch;
   width: 100%;
-  max-width: 480px;
+  max-width: 750px;
   margin: 0 auto;
 
  header {
@@ -24,17 +24,6 @@ const Container = styled.div`
     position: relative;
     margin-bottom: 2rem;
     min-height: 3.5rem;
- 
-
-    a {
-      position: absolute;
-      left: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      display: flex;
-      text-decoration: none;
-      z-index: 10;
-    }
 
     .titulo {
       margin: 0;
@@ -144,12 +133,66 @@ const Container = styled.div`
     }
   }
 }
+
+@media(min-width:800px) {
+  max-width: none;
+  align-items: normal;
+  padding: 0.5rem 2rem;
+  
+  header{
+    margin-bottom: 1rem;
+    .titulo {
+        text-align: left;
+        margin-right: auto;
+        padding-left: 0.2rem;
+        flex: 0 1 auto;
+        font-size: 2.25rem;
+      }
+    }
+      
+    .introducao {
+    h4 {
+        font-size: 1.3rem;
+      }
+
+      p {
+        font-size: 1.2rem;
+      }
+    }
+
+    .contato {
+      li {
+        strong {
+          font-size: 1.3rem;
+        }
+      p {
+        font-size: 1.2rem;
+      }
+    }
+  }
+
+  .container-telefone {
+
+    .titulo-telefone {
+      font-size: 1.3rem;
+    }
+
+    .telefone {
+
+      li {
+        p {
+          font-size: 1.2rem;
+        }
+      }
+    }
+  }
+}
 `;
 
 function Contatos() {
   return (
     <Container>
-      
+
       <header>
         <Link to={"/murals"}>
           <button className="botao-voltar">
@@ -167,31 +210,31 @@ function Contatos() {
       <ul className='contato'>
 
         <li>
-          
+
           <strong>Polícia Militar - 190</strong>
           <p>Acione em casos de roubo, assalto em andamento, situações de risco ou quando houver necessidade de atendimento policial imediato.</p>
-        
+
         </li>
 
         <li>
-          
+
           <strong>SAMU - 192</strong>
           <p>Serviço de Atendimento Móvel de Urgência. Deve ser acionado em casos de emergência médica, como pessoas feridas, desmaios ou outras situações que exijam atendimento rápido.</p>
-        
+
         </li>
 
         <li>
-          
+
           <strong>Corpo de Bombeiros - 193</strong>
           <p>Atua em incêndios, acidentes de trânsito, resgates, salvamentos e outras situações que envolvam risco à vida.</p>
-        
+
         </li>
 
         <li>
-          
+
           <strong>Defesa Civil - 199</strong>
           <p>Responsável por atender ocorrências relacionadas a desastres naturais e riscos estruturais, como enchentes, deslizamentos, queda de árvores, alagamentos e construções com risco de desabamento.</p>
-        
+
         </li>
 
       </ul>

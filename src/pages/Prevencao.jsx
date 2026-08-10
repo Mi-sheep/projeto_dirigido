@@ -29,7 +29,7 @@ const Container = styled.div`
       text-align: center;
       margin: 0;
       font-size: 1.8rem;
-      padding-left: 3rem;
+      margin-left: auto;
       white-space: nowrap;
       overflow: hidden;
     }
@@ -121,6 +121,7 @@ const Container = styled.div`
       .titulo {
         text-align: left;
         margin-right: auto;
+        margin-left: 0;
         padding-left: 0.2rem;
         flex: 0 1 auto;
         font-size: 2.25rem;

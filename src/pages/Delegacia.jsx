@@ -72,22 +72,18 @@ const Container = styled.div`
   }
 
   .box-img {
-    width: 100%;
-    height: 250px;
     margin-bottom: 1.25rem;
     box-sizing: border-box;
-    display: block;
     overflow: hidden;
     border-radius: 0.5rem;
     box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.15);
       
     img {
+      display: block;
       width: 100%;
       max-width: 100%;
       height: auto;
-      display: block;
-      object-fit: cover;
-      transform: scale(1.4);
+      object-fit: fill;
     }
   }
   
@@ -105,6 +101,24 @@ const Container = styled.div`
 
   li:last-child {
     margin-bottom: 0;
+  }
+
+@media(min-width:800px) {
+  max-width: none;
+  align-items: normal;
+  padding: 0rem 2rem;
+  
+  header{
+    margin-bottom: 1rem;
+    max-width: none;
+    .titulo {
+        text-align: left;
+        margin-right: auto;
+        padding-left: 0.2rem;
+        flex: 0 1 auto;
+        font-size: 2.25rem;
+      }
+    }
   }
 `;
 

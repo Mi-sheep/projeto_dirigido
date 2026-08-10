@@ -12,16 +12,17 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  max-width: 480px;
+  max-width: 750px;
   margin: 0 auto;
 
  header {
     box-sizing: border-box;
+    max-width: 480px;
     width: 100%;
     display: flex;
     align-items: center;
     position: relative;
-    margin-bottom: 0;
+    margin: 0 auto;
     min-height: 3.5rem;
 
     .botao-voltar {
@@ -39,7 +40,7 @@ const Container = styled.div`
     font-weight: 600;
     font-family: 'Inclusive Sans', sans-serif;
     color: ${theme.letraTitulo};
-    padding-left: 2rem;
+    padding-left: 3.5rem;
     padding-right: 0.5rem;
   }
 
@@ -79,6 +80,39 @@ const Container = styled.div`
     font-size: 0.95rem;
     margin-bottom: 0.25rem;
   }
+
+@media(min-width:800px) {
+  max-width: none;
+  align-items: normal;
+  padding: 0rem 2rem;
+  
+  header{
+    margin-bottom: 1rem;
+    max-width: none;
+    .titulo {
+        text-align: left;
+        margin-right: auto;
+        padding-left: 0.2rem;
+        flex: 0 1 auto;
+        font-size: 2.25rem;
+      }
+    }
+  }
+  
+  section {
+  h4 {
+      font-size: 1.45rem;
+    }
+
+    p {
+      font-size: 1.2rem;
+    }
+  }
+
+  li{
+    font-size: 1.2rem;
+  }
+}
 `;
 
 function Combate() {
