@@ -135,6 +135,7 @@ const Container = styled.div`
         flex: 0 1 auto;
         font-size: 2.25rem;
         margin-left: 0.5rem;
+        padding: 1rem 0;
       }
     }
 
@@ -172,7 +173,7 @@ const Container = styled.div`
     .texto-img{
       display: flex;
       gap: 1rem;
-      align-items: stetch;
+      align-items: stretch;
     }
 }
 `;

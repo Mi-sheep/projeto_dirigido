@@ -35,6 +35,7 @@ function Configuracoes() {
         <button>Sobre o aplicativo</button>
         <button>Acessibilidade</button>
         <button>Reporte de erros e sugestões</button>
+        <button>Referências do mural</button>
       </div>
     </Container>
   )
