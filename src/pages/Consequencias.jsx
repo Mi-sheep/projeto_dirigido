@@ -169,7 +169,6 @@ const Container = styled.div`
   .texto-video{
     display: flex;
     gap: 1rem;
-    align-items: stetch;
   }
 
   .video-wrapper {

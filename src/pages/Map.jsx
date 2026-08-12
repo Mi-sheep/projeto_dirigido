@@ -206,7 +206,7 @@ h2 {
 
 function Map() {
 
-//implementação do supabase
+  //implementação do supabase
 
   const [ocorrencia, setOcorrencia] = useState([])
   console.log(ocorrencia)
@@ -215,13 +215,13 @@ function Map() {
     fetchOcorrencia()
   }, [])
 
-  async function fetchOcorrencia(){
-    const {data} = await supabase.from('ocorrencias').select('*')
+  async function fetchOcorrencia() {
+    const { data } = await supabase.from('ocorrencias').select('*')
     setOcorrencia(data)
 
   }
 
-//ajustes do mapa
+  //ajustes do mapa
 
   const customIcon = new Icon({
     iconUrl: "https://api.iconify.design/mdi/map-marker.svg?color=%23ff0000",
@@ -237,7 +237,7 @@ function Map() {
 
   const formatarData = (data) => {
 
-    const[ano, mes, dia] = data.split("-")
+    const [ano, mes, dia] = data.split("-")
     return `${dia}/${mes}/${ano}`;
   }
 
@@ -246,103 +246,103 @@ function Map() {
   const [alerta, setAlerta] = useState(false)
 
 
-  function OAlerta(){
+  function OAlerta() {
 
     useMapEvents({
-    click(p) {
+      click(p) {
 
-      if(!alerta) return;
+        if (!alerta) return;
 
-      navigate("/alerta", {
-        state:{
-          lati: p.latlng.lat,
-          long: p.latlng.lng,
-        }
-      })
-    }
-  });
+        navigate("/alerta", {
+          state: {
+            lati: p.latlng.lat,
+            long: p.latlng.lng,
+          }
+        })
+      }
+    });
     return null;
   }
 
   //botão de delete
-    async function deletarOcorrencia(id_ocorrencia) {
+  async function deletarOcorrencia(id_ocorrencia) {
 
-      const { data, error } = await supabase.from('ocorrencias').delete().eq('id', id_ocorrencia)
+    const { data, error } = await supabase.from('ocorrencias').delete().eq('id', id_ocorrencia)
 
     fetchOcorrencia()
 
-    if (error){
+    if (error) {
       console.log(error)
     }
-    if (data){
+    if (data) {
       console.log(data)
     }
-      
-    }
+
+  }
 
   return (
-  <Container>
-    <header>
-      <img className='logo' src={logo} alt="Logo da UFAssalto" />
-      
-      <h2>UFAssalto</h2>
+    <Container>
+      <header>
+        <img className='logo' src={logo} alt="Logo da UFAssalto" />
 
-      <Link className='link' to={"/configuracoes"}>
-      <button className='configBotao'><img className='config' src={iconConfig} alt="Configurações" /></button>
-      </Link>
+        <h2>UFAssalto</h2>
 
-    </header>
-      
-    <div className='mapa'>
-      <MapContainer className = 'map' center = {[-23.64420573766554, -46.52851296697583]} zoom={19} minZoom={17}>
+        <Link className='link' to={"/configuracoes"}>
+          <button className='configBotao'><img className='config' src={iconConfig} alt="Configurações" /></button>
+        </Link>
 
-      <TileLayer
-      attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-      url='https://tile.openstreetmap.org/{z}/{x}/{y}.png'
-      />
+      </header>
 
-      <OAlerta />
+      <div className='mapa'>
+        <MapContainer className='map' center={[-23.64420573766554, -46.52851296697583]} zoom={19} minZoom={17}>
 
-      <MarkerClusterGroup
-        chunkedLoading
-        iconCreateFunction={customCluster}
-      >
+          <TileLayer
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            url='https://tile.openstreetmap.org/{z}/{x}/{y}.png'
+          />
 
-        {ocorrencia.map((ocorrencia) => (
-            <Marker key={ocorrencia.id} icon ={customIcon} position={[ocorrencia.local_x, ocorrencia.local_y]}>
-            <Popup>
-              <div className='popup'>
-              <h4>Data do assalto: {formatarData(ocorrencia.data_ocorrido)}</h4>
-              <p>Período: {ocorrencia.periodo_ocorrido}</p>
-              <p>Região: {ocorrencia.regiao_ocorrido}</p>
-              <p>Descrição: {ocorrencia.descricao}</p>
-              <button className='deletar' onClick={() => {deletarOcorrencia(ocorrencia.id)}}>Deletar ocorrência</button>
-              </div> 
-            </Popup>
-            </Marker>
-        ))
-        }
-      </MarkerClusterGroup>
-    </MapContainer>
+          <OAlerta />
 
-    </div>
+          <MarkerClusterGroup
+            chunkedLoading
+            iconCreateFunction={customCluster}
+          >
 
-  {/* botões de baixo */}
+            {ocorrencia.map((ocorrencia) => (
+              <Marker key={ocorrencia.id} icon={customIcon} position={[ocorrencia.local_x, ocorrencia.local_y]}>
+                <Popup>
+                  <div className='popup'>
+                    <h4>Data do assalto: {formatarData(ocorrencia.data_ocorrido)}</h4>
+                    <p>Período: {ocorrencia.periodo_ocorrido}</p>
+                    <p>Região: {ocorrencia.regiao_ocorrido}</p>
+                    <p>Descrição: {ocorrencia.descricao}</p>
+                    <button className='deletar' onClick={() => { deletarOcorrencia(ocorrencia.id) }}>Deletar ocorrência</button>
+                  </div>
+                </Popup>
+              </Marker>
+            ))
+            }
+          </MarkerClusterGroup>
+        </MapContainer>
 
-    <div className='containerBotoes'>
-      <Link to={"/comunidade"}>
-      <button className='botaoQuadrado'><img className='botoes' src={iconComunidade} alt="Estatísticas"/></button>
-      </Link>
+      </div>
 
-      <button className='botaoCircular' onClick={() => {setAlerta(!alerta); alerta ? alert("Selecione o botão novamente para ativar o modo de alerta") : alert("Selecione o local do assalto")}}>{alerta ? <img className='alerta botoes' src={iconCancelar} alt='Cancelar ocorrência'/> : <img className='alerta botoes' src={iconAlerta} alt='Registrar ocorrência'/>}</button>
+      {/* botões de baixo */}
 
-      <Link to={"/murals"}>
-      <button className='botaoQuadrado'><img className='botoes' src={iconMural} alt="Mural de informações" /></button>
-      </Link>
-    </div>
-      
-  </Container>
-    
+      <div className='containerBotoes'>
+        <Link to={"/comunidade"}>
+          <button className='botaoQuadrado'><img className='botoes' src={iconComunidade} alt="Estatísticas" /></button>
+        </Link>
+
+        <button className='botaoCircular' onClick={() => { setAlerta(!alerta); alerta ? alert("Selecione o botão novamente para ativar o modo de alerta") : alert("Selecione o local do assalto") }}>{alerta ? <img className='alerta botoes' src={iconCancelar} alt='Cancelar ocorrência' /> : <img className='alerta botoes' src={iconAlerta} alt='Registrar ocorrência' />}</button>
+
+        <Link to={"/murals"}>
+          <button className='botaoQuadrado'><img className='botoes' src={iconMural} alt="Mural de informações" /></button>
+        </Link>
+      </div>
+
+    </Container>
+
   )
 }
 
