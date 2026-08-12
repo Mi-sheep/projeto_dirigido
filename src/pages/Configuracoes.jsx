@@ -54,6 +54,8 @@ const Container = styled.div`
       transform: translateY(-2px);
     }
 
+  }
+
     span {
       color: ${theme.texto};
       font-size: 1.2rem;
@@ -61,7 +63,6 @@ const Container = styled.div`
       line-height: 1.3;
       text-align: center;
     }
-  }
 
   .botoesC {
     display: flex;
@@ -104,6 +105,29 @@ const Container = styled.div`
     }
   }
 
+@media(min-width:800px) {
+  max-width: 70%;
+
+  header{
+    .titulo{
+      font-size: 2.65rem;
+    }
+  }
+
+  span{
+    font-size: 1.45rem;
+  }
+
+  .card-aviso{
+    h2 {
+      font-size: 1.45rem;
+    }
+
+    p {
+      font-size: 1.25rem;
+    }
+  }
+}
 `;
 
 
@@ -112,20 +136,20 @@ function Configuracoes() {
     <Container>
 
       <header>
-         <Link to={"/"}>
-            <button className="botao-voltar">
-              <img className='iconeVoltar' src={iconVoltar} alt="Voltar" />
-            </button>
-          </Link>
+        <Link to={"/"}>
+          <button className="botao-voltar">
+            <img className='iconeVoltar' src={iconVoltar} alt="Voltar" />
+          </button>
+        </Link>
         <h1 className='titulo'>Configurações</h1>
       </header>
 
       <div className='botoesC'>
 
-      <div className='card-aviso'>
-        <h2>⚠️ Área em Construção</h2>
-        <p>Algumas funções podem estar instáveis ou indisponíveis no momento.</p>
-      </div>
+        <div className='card-aviso'>
+          <h2>⚠️ Área em Construção</h2>
+          <p>Algumas funções podem estar instáveis ou indisponíveis no momento.</p>
+        </div>
 
         <button className='cartaoBotao'>
           <span>Sobre o aplicativo</span>
