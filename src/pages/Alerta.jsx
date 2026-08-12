@@ -41,7 +41,6 @@ const Container = styled.div`
 
   p:not(.bo), label{
     margin: 0;
-    font-size: 1rem;
     line-height: 2;
   }
   
@@ -159,6 +158,53 @@ const Container = styled.div`
       transform: scale(1.02);
     }
   }
+
+@media(min-width:800px) {
+  padding: 0.5rem 2rem;
+  max-width: 1400px;
+
+  .titulo{
+    margin-left: 0;
+    padding: 0 0.2rem;
+    font-size: 2.75rem;
+  }
+
+   label{
+    font-size: 1.3rem;
+   }
+
+  .datas{
+    input{
+      font-size: 1.25rem;
+    }
+  }
+  
+  .periodos, .regioes{
+    p{
+      font-size: 1.55rem;
+    }
+    
+    input, select{
+      font-size: 1.25rem;
+    }
+  }
+
+  .descricoes{
+    textarea{
+      font-size: 1.25rem;
+    }
+  }
+
+  .bo{
+    h4{
+      font-size: 1.25rem;
+    }
+    p{
+      font-size: 1.2rem;
+    }
+  }
+
+}
 
 `;
 
