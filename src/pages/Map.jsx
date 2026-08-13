@@ -40,8 +40,8 @@ header {
   align-items: center;
   padding: 0.5rem 0.6rem;
   margin-bottom: 0.5rem;
-  margin-top: 0.5rem;
-  height: 10%;
+  margin-top: 2dvh;
+  height: 10dvh;
   gap: 0.75rem;
 }
 
@@ -79,8 +79,8 @@ h2 {
 }
 
 .map {
-  height: 73vh;
-  width: 95vw;
+  height: 73dvh;
+  width: 95dvw;
   margin: 0 auto;
 }
 
@@ -132,7 +132,7 @@ h2 {
   display: flex;
   align-items: center;
   width: 100%;
-  height: 17%;
+  height: 17dvh;
   justify-content: space-between;
   padding: 0.5rem 1rem;
 }
@@ -180,7 +180,7 @@ h2 {
 @media(min-width:800px) {
 
   header{
-    height: 8%;
+    height: 8dvh;
     padding-left: 1.5rem;
     padding-right: 1.7rem;
   }
