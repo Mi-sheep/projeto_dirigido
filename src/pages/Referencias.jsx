@@ -241,7 +241,7 @@ function Referencias() {
     <Container>
 
       <header>
-        <Link to={"/murals"}>
+        <Link to={"/configuracoes"}>
           <button className="botao-voltar">
             <img className='iconeVoltar' src={iconVoltar} alt="Voltar" />
           </button>
