@@ -97,7 +97,7 @@ const Container = styled.div`
         font-size: 2.25rem;
       }
     }
-  }
+  
   
   section {
   h4 {
