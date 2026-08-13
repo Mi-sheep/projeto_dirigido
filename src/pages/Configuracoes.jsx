@@ -15,6 +15,10 @@ const Container = styled.div`
   max-width: 750px;
   margin: 0 auto;
 
+  a{
+    text-decoration: none;
+  }
+
  header {
     box-sizing: border-box;
     width: 100%;
@@ -165,9 +169,11 @@ function Configuracoes() {
           <span>Reporte de erros e sugestões</span>
         </button>
 
-        <button className='cartaoBotao'>
-          <span>Referências do mural</span>
-        </button>
+        <Link to={"/referencias"}>
+          <button className='cartaoBotao'>
+            <span>Referências do mural</span>
+          </button>
+        </Link>
 
       </div>
     </Container>

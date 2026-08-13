@@ -10,6 +10,7 @@ import Contatos from "./pages/Contatos"
 import Delegacia from "./pages/Delegacia"
 import Consequencias from "./pages/Consequencias"
 import Combate from "./pages/Combate"
+import Referencias from "./pages/Referencias"
 
 function Router(){
     return(
@@ -23,7 +24,8 @@ function Router(){
             <Route path="/contatos-de-emergencia" element={<Contatos/>}/>
             <Route path="/delegacia-eletronica" element={<Delegacia/>}/> 
             <Route path="/como-os-assaltos-afetam-o-psicologico-das-vitimas" element={<Consequencias/>}/>        
-            <Route path="ufabc-em-combate-aos-assaltos" element={<Combate/>}/>
+            <Route path="/ufabc-em-combate-aos-assaltos" element={<Combate/>}/>
+            <Route path="/referencias" element={<Referencias/>}/>
         </Routes> 
     )
 }
