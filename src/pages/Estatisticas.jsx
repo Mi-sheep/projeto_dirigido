@@ -5,7 +5,7 @@ import iconVoltar from '../assets/icon-voltar.png'
 import { Link } from 'react-router-dom'
 import { supabase } from '../createClient'
 
-import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend} from 'chart.js'
+import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js'
 import { Bar } from 'react-chartjs-2'
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
@@ -217,7 +217,7 @@ const Container = styled.div`
 
 
 
-function Comunidade() {
+function Estatisticas() {
   const [ocorrencias, setOcorrencias] = useState([]);
   const [dadosGrafico, setDadosGrafico] = useState({ labels: [], datasets: [] });
   const [totalregistrado, setTotalRegistrado] = useState(0);
@@ -226,16 +226,14 @@ function Comunidade() {
 
   async function buscarDados() {
     const { data, error } = await supabase
-    .from('ocorrencias')
-    .select('*')
-    .order('data_ocorrido', { ascending: false });
+      .from('ocorrencias')
+      .select('*')
+      .order('data_ocorrido', { ascending: false });
 
     if (error) {
       console.error('Erro ao buscar dados:', error);
       return;
     }
-
-    console.log('Dados carregados:', data);
 
     atualizarEstados(data || []);
   }
@@ -261,7 +259,7 @@ function Comunidade() {
         }
       )
       .subscribe();
-    
+
     return () => {
       supabase.removeChannel(canalOcorrencias);
     };
@@ -269,7 +267,7 @@ function Comunidade() {
 
 
   function processarDadoGrafico(lista) {
-    const todosMeses = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez' ];
+    const todosMeses = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
     const mesAtual = new Date().getMonth();
     let mesesDoQuadrimestre = [];
     let indicesDosMeses = [];
@@ -298,66 +296,66 @@ function Comunidade() {
         }
       }
     });
-  
-  setDadosGrafico({
-    labels: mesesDoQuadrimestre,
-    datasets: [
-      {
-        label: 'Ocorrências',
-        data: contagemQuadrimestre,
-        backgroundColor: '#52b788',
-        borderRadius: 4,
-      },
-    ],
-  });
-}
 
-
-function calcularRankingRuas(lista) {
-  const contagemRuas = {};
-
-  lista.forEach(item => {
-    if (item.regiao_ocorrido) {
-      const nomeRua = item.regiao_ocorrido.trim();
-      contagemRuas[nomeRua] = (contagemRuas[nomeRua] || 0) + 1;
-    }
-  });
-
-  const rankingOrdenado = Object.keys(contagemRuas)
-    .map(rua => ({ nome: rua, quantidade: contagemRuas[rua] }))
-    .sort((a, b) => b.quantidade - a.quantidade)
-    .slice(0, 3);
-
-  setRuasMaisFrequentes(rankingOrdenado);
-}
-
-const opcoesGrafico = {
-  responsive: true,
-  maintainAspectRatio: false,
-  plugins: { legend: { display: false } },
-  barPercentage: 0.6,
-  scales: {
-    y: { beginAtZero: true, ticks: { stepSize: 1 } },
-    x: { grid: { display: false } }
+    setDadosGrafico({
+      labels: mesesDoQuadrimestre,
+      datasets: [
+        {
+          label: 'Ocorrências',
+          data: contagemQuadrimestre,
+          backgroundColor: '#52b788',
+          borderRadius: 4,
+        },
+      ],
+    });
   }
-};
 
 
-function formatarDataExibicao(dataStr) {
-  if (!dataStr) return '';
-  const [ano, mes, dia] = dataStr.split('-');
-  return `${dia}/${mes}/${ano}`;
-}
+  function calcularRankingRuas(lista) {
+    const contagemRuas = {};
+
+    lista.forEach(item => {
+      if (item.regiao_ocorrido) {
+        const nomeRua = item.regiao_ocorrido.trim();
+        contagemRuas[nomeRua] = (contagemRuas[nomeRua] || 0) + 1;
+      }
+    });
+
+    const rankingOrdenado = Object.keys(contagemRuas)
+      .map(rua => ({ nome: rua, quantidade: contagemRuas[rua] }))
+      .sort((a, b) => b.quantidade - a.quantidade)
+      .slice(0, 3);
+
+    setRuasMaisFrequentes(rankingOrdenado);
+  }
+
+  const opcoesGrafico = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    barPercentage: 0.6,
+    scales: {
+      y: { beginAtZero: true, ticks: { stepSize: 1 } },
+      x: { grid: { display: false } }
+    }
+  };
+
+
+  function formatarDataExibicao(dataStr) {
+    if (!dataStr) return '';
+    const [ano, mes, dia] = dataStr.split('-');
+    return `${dia}/${mes}/${ano}`;
+  }
 
 
   return (
     <Container>
       <header>
-      <Link to={"/"}>
-        <button className="botao-voltar">
-          <img className='iconeVoltar' src={iconVoltar} alt="Voltar" />
-        </button>
-      </Link>
+        <Link to={"/"}>
+          <button className="botao-voltar">
+            <img className='iconeVoltar' src={iconVoltar} alt="Voltar" />
+          </button>
+        </Link>
         <h1 className="titulo">Estatísticas</h1>
       </header>
 
@@ -365,7 +363,7 @@ function formatarDataExibicao(dataStr) {
 
         <div className="card-estatistica">
           <div className="topo-grafico"> Roubos Mensais</div>
-          <div style={{flex: 1, minHeight:'6.25rem'}}>
+          <div style={{ flex: 1, minHeight: '6.25rem' }}>
             {dadosGrafico.labels.length > 0 && (
               <Bar data={dadosGrafico} options={opcoesGrafico} />
             )}
@@ -379,21 +377,21 @@ function formatarDataExibicao(dataStr) {
 
         <div className="card-estatistica">
           <div className="topo-grafico">Regiões com mais ocorrências</div>
-            <ul className="lista-ruas">
-              {ruasMaisFrequentes.map((rua, index) => (
-                <li key={index}>
-                  <span className="nome-rua" title={rua.nome}>
-                    {rua.nome}
-                  </span>
-                  <span className="contador-alerta">
-                    {rua.quantidade} {rua.quantidade === 1 ? 'registro' : 'registros'}
-                  </span>
-                </li>
-              ))}
-              {ruasMaisFrequentes.length === 0 && (
-                <div style={{ opacity: 0.5, padding: '1rem 0', fontSize: '0.9rem' }}>Nenhum registro encontrado.</div>
-              )}
-            </ul>
+          <ul className="lista-ruas">
+            {ruasMaisFrequentes.map((rua, index) => (
+              <li key={index}>
+                <span className="nome-rua" title={rua.nome}>
+                  {rua.nome}
+                </span>
+                <span className="contador-alerta">
+                  {rua.quantidade} {rua.quantidade === 1 ? 'registro' : 'registros'}
+                </span>
+              </li>
+            ))}
+            {ruasMaisFrequentes.length === 0 && (
+              <div style={{ opacity: 0.5, padding: '1rem 0', fontSize: '0.9rem' }}>Nenhum registro encontrado.</div>
+            )}
+          </ul>
         </div>
       </div>
 
@@ -402,27 +400,27 @@ function formatarDataExibicao(dataStr) {
       <div className="lista-historico">
         {ocorrencias.map((oc) => (
           <div key={oc.Id || oc.id} className="card-ocorrencia">
-            <div className="topo-ocorrencia" style={{ }}>
+            <div className="topo-ocorrencia" style={{}}>
               <div className='linha-regiao'>
                 <span className="tag-info regiao">
                   <strong>Região:</strong> {oc.regiao_ocorrido || 'Não informado'}
                 </span>
               </div>
 
-            <div className='linha-info'>
-              <span className="tag-info">
-                <strong>Período:</strong> {oc.periodo_ocorrido || 'Não informado'}
-              </span>
-              <span className="tag-info">
-                <strong>Data:</strong> {formatarDataExibicao(oc.data_ocorrido)}
-              </span>
+              <div className='linha-info'>
+                <span className="tag-info">
+                  <strong>Período:</strong> {oc.periodo_ocorrido || 'Não informado'}
+                </span>
+                <span className="tag-info">
+                  <strong>Data:</strong> {formatarDataExibicao(oc.data_ocorrido)}
+                </span>
+              </div>
+            </div>
+
+            <div className="descricao-ocorrencia" sytle={{ marginTop: '0.5rem' }}>
+              {oc.descricao || "Sem descrição disponível"}
             </div>
           </div>
-
-          <div className="descricao-ocorrencia" sytle={{ marginTop: '0.5rem' }}>
-            {oc.descricao || "Sem descrição disponível"}
-          </div>
-        </div>
         ))}
 
         {ocorrencias.length === 0 && (
@@ -435,4 +433,4 @@ function formatarDataExibicao(dataStr) {
   )
 }
 
-export default Comunidade
+export default Estatisticas

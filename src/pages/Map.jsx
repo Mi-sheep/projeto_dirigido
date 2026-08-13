@@ -209,7 +209,6 @@ function Map() {
   //implementação do supabase
 
   const [ocorrencia, setOcorrencia] = useState([])
-  console.log(ocorrencia)
 
   useEffect(() => {
     fetchOcorrencia()
@@ -330,13 +329,13 @@ function Map() {
       {/* botões de baixo */}
 
       <div className='containerBotoes'>
-        <Link to={"/comunidade"}>
+        <Link to={"/estatisticas"}>
           <button className='botaoQuadrado'><img className='botoes' src={iconComunidade} alt="Estatísticas" /></button>
         </Link>
 
         <button className='botaoCircular' onClick={() => { setAlerta(!alerta); alerta ? alert("Selecione o botão novamente para ativar o modo de alerta") : alert("Selecione o local do assalto") }}>{alerta ? <img className='alerta botoes' src={iconCancelar} alt='Cancelar ocorrência' /> : <img className='alerta botoes' src={iconAlerta} alt='Registrar ocorrência' />}</button>
 
-        <Link to={"/murals"}>
+        <Link to={"/mural-de-informacoes"}>
           <button className='botaoQuadrado'><img className='botoes' src={iconMural} alt="Mural de informações" /></button>
         </Link>
       </div>

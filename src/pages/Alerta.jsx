@@ -211,18 +211,18 @@ const Container = styled.div`
 
 function Alerta() {
 
+//setup do estado inicial dos dados
   const navigate = useNavigate()
 
   const { state } = useLocation();
-  console.log(state)
 
   const [opcaoR, setOpcaoR] = useState('');
 
   const [dados, setDados] = useState({
     data_ocorrido: null, periodo: null, regiao: null, descricao: null, local_y: state?.long ?? null, local_x: state?.lati ?? null
   })
-  console.log(dados)
 
+//função que vai registrando os dados enquanto eles vão sendo escritos
   function handleMudanca(e) {
 
     setDados(preFormData => {
@@ -233,7 +233,7 @@ function Alerta() {
     })
   }
 
-
+//função que manda para o banco de dados
   async function registrarDados(e) {
     e.preventDefault();
 
@@ -274,7 +274,7 @@ function Alerta() {
         <div className='periodos'>
           <p>Período ocorrido</p>
           <select name="periodo" id="periodos" onChange={handleMudanca}>
-            <option value="" disabled selected>Selecione o período</option>
+            <option defaultValue="" >Selecione o período</option>
             <option value="Manhã">Manhã</option>
             <option value="Tarde">Tarde</option>
             <option value="Noite">Noite</option>
@@ -311,7 +311,7 @@ function Alerta() {
         <br />
         <div className='bo'>
           <h4><em>Registrou um Boletim de Ocorrência?</em></h4>
-          <p>Você sabia que esse registro pode ajudar muito além do seu próprio caso? O Boletim de Ocorrência contribui para que as autoridades identifiquem padrões, compreendam a necessidade de intervenção em determinados pontos e horários, além de auxiliar em investigações de situações semelhantes.</p>
+          <p>Você sabia que esse registro pode ajudar muito além do seu próprio caso? O Boletim de Ocorrência contribui para que as autoridades identifiquem padrões e compreendam a necessidade de intervenção em determinados pontos e horários, além de auxiliar em investigações de situações semelhantes.</p>
           <br />
           <p>Saiba mais acessando nosso mural de informações.</p>
         </div>

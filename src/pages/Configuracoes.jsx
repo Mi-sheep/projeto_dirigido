@@ -169,7 +169,7 @@ function Configuracoes() {
           <span>Reporte de erros e sugestões</span>
         </button>
 
-        <Link to={"/referencias"}>
+        <Link to={"/referencias-do-mural"}>
           <button className='cartaoBotao'>
             <span>Referências do mural</span>
           </button>

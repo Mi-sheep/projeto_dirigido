@@ -104,7 +104,7 @@ const Container = styled.div`
     }
   }
   
-  ul {
+  ul, ol {
     margin: 0.5rem 0 0 0;
     padding-left: 1.25rem;
   }
@@ -118,6 +118,10 @@ const Container = styled.div`
 
   li:last-child {
     margin-bottom: 0;
+  }
+
+  ol{
+    margin-bottom: 1rem;  
   }
 
 @media(min-width:800px) {
@@ -183,7 +187,7 @@ function Delegacia() {
     <Container>
 
       <header>
-        <Link to={"/murals"}>
+        <Link to={"/mural-de-informacoes"}>
           <button className="botao-voltar">
             <img className='iconeVoltar' src={iconVoltar} alt="Voltar" />
           </button>
@@ -232,15 +236,15 @@ function Delegacia() {
       <section>
         <h4>Como registrar um Boletim de Ocorrência Digital</h4>
 
-        <ul>
-          <li>1. Acesse a Delegacia Eletrônica e faça login com sua conta ou utilize o acesso pelo Gov.br.</li>
+        <ol>
+          <li>Acesse a Delegacia Eletrônica e faça login com sua conta ou utilize o acesso pelo Gov.br;</li>
 
-          <li>2. Clique em "Comunicar Ocorrência" e selecione o tipo de ocorrência desejada (como furto, estelionato, perda de documentos ou acidente de trânsito sem vítimas).</li>
+          <li>Clique em "Comunicar Ocorrência" e selecione o tipo de ocorrência desejada (como furto, estelionato, perda de documentos ou acidente de trânsito sem vítimas);</li>
 
-          <li>3. Preencha os campos obrigatórios com um relato claro e objetivo, além das informações dos envolvidos.</li>
+          <li>Preencha os campos obrigatórios com um relato claro e objetivo, além das informações dos envolvidos;</li>
 
-          <li>4. Envie o formulário e anote o número do protocolo para acompanhar o andamento da solicitação pelo site ou por e-mail.</li>
-        </ul>
+          <li>Envie o formulário e anote o número do protocolo para acompanhar o andamento da solicitação pelo site ou por e-mail.</li>
+        </ol>
 
         <h4>Dicas Importantes</h4>
 

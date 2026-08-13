@@ -165,7 +165,7 @@ function MuralS() {
 
       <div className='botoesM'>
 
-        <Link to={"/prevencao"}>
+        <Link to={"/guia-de-prevencao"}>
           <button className='cartaoMural'>
             <span>Guia de Prevenção</span>
             <div className="icon-container">

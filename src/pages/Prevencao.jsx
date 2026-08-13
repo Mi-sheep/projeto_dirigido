@@ -164,7 +164,7 @@ function Prevencao() {
     <Container>
 
       <header>
-        <Link to={"/murals"}>
+        <Link to={"/mural-de-informacoes"}>
           <button className="botao-voltar">
             <img className='iconeVoltar' src={iconVoltar} alt="Voltar" />
           </button>
@@ -174,7 +174,7 @@ function Prevencao() {
 
       <section className='introducao'>
         <h4>
-          Uma das maiores preocupações dos estudantes da UFABC em relação à segurança pública é a recorrência de roubos no entorno da universidade. Em 2025, as estatísticas oficiais apontaram o registro de XX roubos na cidade, sendo grande parte desses crimes cometida contra pedestres. Diante dessa realidade, este panfleto reúne orientações e dicas de prevenção para ajudar a comunidade acadêmica a reduzir riscos e adotar medidas de segurança no dia a dia.
+          Uma das maiores preocupações dos estudantes da UFABC em relação à segurança pública é a recorrência de roubos no entorno da universidade. A cada hora, 5 casos de roubo são registrados no Grande ABC. No primeiro semestre de 2026, foram por média 121 ocorrências por dia, com 21.877 boletins de ocorrência registrados somente de crimes contra o patrimônio. Diante dessa realidade, este panfleto reúne orientações e dicas de prevenção para ajudar a comunidade acadêmica a reduzir riscos e adotar medidas de segurança no dia a dia.
         </h4>
       </section>
 

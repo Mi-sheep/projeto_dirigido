@@ -194,7 +194,7 @@ function Contatos() {
     <Container>
 
       <header>
-        <Link to={"/murals"}>
+        <Link to={"/mural-de-informacoes"}>
           <button className="botao-voltar">
             <img className='iconeVoltar' src={iconVoltar} alt="Voltar" />
           </button>
@@ -245,19 +245,19 @@ function Contatos() {
         <ul className='telefone'>
 
           <li>
-            <p><strong>Fique calmo - </strong> Caso o munícipe esteja nervoso, a comunicação pode ser prejudicada e o entendimento do caso mais demorado, atrasando, assim, o acionamento da equipe.</p>
+            <p><strong>Fique calmo - </strong> Caso o autor da ligação esteja nervoso, a comunicação pode ser prejudicada e o entendimento do caso mais demorado, atrasando, assim, o acionamento da equipe;</p>
           </li>
 
           <li>
-            <p><strong>Identifique-se fornecendo o nome e o telefone de contato - </strong>Assim que o atendente receber a ligação, de imediato, informe seu nome e o telefone para contato. Caso a ligação seja perdida, o atendente terá condições de retornar a ligação para o munícipe.</p>
+            <p><strong>Identifique-se fornecendo o nome e o telefone de contato - </strong>Assim que o atendente receber a ligação, de imediato, informe seu nome e o telefone para contato. Caso a ligação seja perdida, o atendente terá condições de retornar a ligação para quem chamou;</p>
           </li>
 
           <li>
-            <p><strong>Diga exatamente o que está acontecendo - </strong>É primordial que seja informado o que realmente esteja acontecendo no local para que seja determinado o nível de emergência da ocorrência.</p>
+            <p><strong>Diga exatamente o que está acontecendo - </strong>É primordial que seja informado o que realmente esteja acontecendo no local para que seja determinado o nível de emergência da ocorrência;</p>
           </li>
 
           <li>
-            <p><strong>Informe se há vítimas. Havendo, forneça precisamente o número de pessoas - </strong>Fornecendo o número exato de pessoas, o atendente aciona o número de equipes necessárias para o atendimento.</p>
+            <p><strong>Informe se há vítimas. Havendo, forneça precisamente o número de pessoas - </strong>Fornecendo o número exato de pessoas, o atendente aciona o número de equipes necessárias para o atendimento;</p>
           </li>
 
           <li>
