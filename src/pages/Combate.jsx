@@ -97,7 +97,7 @@ const Container = styled.div`
         font-size: 2.25rem;
       }
     }
-  }
+  
   
   section {
   h4 {
@@ -118,9 +118,9 @@ const Container = styled.div`
 function Combate() {
   return (
     <Container>
-      
+
       <header>
-        <Link to={"/murals"}>
+        <Link to={"/mural-de-informacoes"}>
           <button className="botao-voltar">
             <img className='iconeVoltar' src={iconVoltar} alt="Voltar" />
           </button>
@@ -156,12 +156,12 @@ function Combate() {
       <section>
 
         <h4>Registro de ocorrências na UFABC</h4>
-        
+
         <p>A Universidade também disponibiliza computadores para que a comunidade possa formalizar registros de ocorrências.</p>
 
         <ul>
-            <li>Campus Santo André: Piso Vermelho do Bloco A</li>
-            <li>Campus São Bernardo do Campo: Saguão do Bloco Alfa I</li>
+          <li>Campus Santo André: Piso Vermelho do Bloco A</li>
+          <li>Campus São Bernardo do Campo: Saguão do Bloco Alfa I</li>
         </ul>
 
       </section>
