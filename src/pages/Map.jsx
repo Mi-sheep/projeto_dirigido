@@ -40,8 +40,8 @@ header {
   align-items: center;
   padding: 0.5rem 0.6rem;
   margin-bottom: 0.5rem;
-  margin-top: 2vh;
-  height: 10vh;
+  margin-top: 0.5rem;
+  height: 10%;
   gap: 0.75rem;
 }
 
@@ -132,7 +132,7 @@ h2 {
   display: flex;
   align-items: center;
   width: 100%;
-  height: 17vh;
+  height: 17%;
   justify-content: space-between;
   padding: 0.5rem 1rem;
 }
@@ -180,7 +180,7 @@ h2 {
 @media(min-width:800px) {
 
   header{
-    height: 8vh;
+    height: 8%;
     padding-left: 1.5rem;
     padding-right: 1.7rem;
   }
